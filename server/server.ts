@@ -1,12 +1,28 @@
 import express, { NextFunction, Request, Response } from 'express';
 import path from 'path';
+import session from 'express-session';
+import passport from 'passport';
+
 import { GlobalError } from './serverTypes';
+import authRoutes from './routes/auth';
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+
+app.use(
+  session({
+    secret: 'SECRET'
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+app.use('/auth', authRoutes);
 
 app.use(
   '/stylesheets',
@@ -23,8 +39,9 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use((req: Request, res: Response) => {
-  return res.status(404)
-})
+  console.log('error handler unknown route');
+  return res.status(404);
+});
 
 app.use((err: GlobalError, req: Request, res: Response, next: NextFunction) => {
   const defaultErr = {
