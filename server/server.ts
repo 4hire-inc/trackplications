@@ -18,7 +18,7 @@ app.get('/bundle.js', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/bundle.js'));
 });
 
-app.get('/', (req: Request, res: Response) => {
+app.get('*', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
