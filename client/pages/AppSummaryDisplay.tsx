@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AppSummaryDisplay = () => {
+const AppSummaryDisplay = (props: any) => {
   return (
     <div>AppSummaryDisplay</div>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AppDetailDisplay = () => {
+const AppDetailDisplay = (props: any) => {
   return (
     <div>AppDetailDisplay</div>
   );
