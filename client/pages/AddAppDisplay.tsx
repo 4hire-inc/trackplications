@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddAppDisplay = () => {
+const AddAppDisplay = (props: any) => {
   return (
     <div>AddAppDisplay</div>
   );
