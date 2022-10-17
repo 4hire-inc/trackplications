@@ -23,8 +23,8 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use((req: Request, res: Response) => {
-  return res.status(404)
-})
+  return res.status(404);
+});
 
 app.use((err: GlobalError, req: Request, res: Response, next: NextFunction) => {
   const defaultErr = {
