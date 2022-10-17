@@ -6,6 +6,7 @@ import AppSummaryDisplay from './pages/AppSummaryDisplay';
 import AppDetailDisplay from './pages/AppDetailDisplay';
 import AddAppDisplay from './pages/AddAppDisplay';
 import EditAppDisplay from './pages/EditAppDisplay';
+import AuthorizationPage from './pages/AuthorizationPage';
 
 const App = () => {
   const [ userInfo, updateUserInfo ] = useState({
@@ -21,10 +22,10 @@ const App = () => {
       <div className="page-container">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/summary" element={<AppSummaryDisplay appsList={appsList} setActiveApp={setActiveApp} />} /> */}
-          {/* <Route path="/appdetail" element={<AppDetailDisplay activeApp={activeApp} />} /> */}
-          {/* <Route path='/addapp' element={<AddAppDisplay updateAppsList={updateAppsList} />} /> */}
-          {/* <Route path='/editapp' element={<EditAppDisplay activeApp={activeApp} setActiveApp={setActiveApp} />} /> */}
+          <Route path="/summary" element={<AppSummaryDisplay appsList={appsList} setActiveApp={setActiveApp} />} />
+          <Route path="/appdetail" element={<AppDetailDisplay activeApp={activeApp} />} />
+          <Route path='/addapp' element={<AddAppDisplay updateAppsList={updateAppsList} />} />
+          <Route path='/editapp' element={<EditAppDisplay activeApp={activeApp} setActiveApp={setActiveApp} />} />
           <Route path='/auth' element={<AuthorizationPage updateUserInfo ={updateUserInfo} updateAppsList={updateAppsList} />} />
         </Routes>
       </div>
