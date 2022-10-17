@@ -1,9 +1,12 @@
 import React from 'react';
 
-const App = () => {
+const App = (props: any) => {  // update type when props are defined
   return(
-    <div>Hello World</div>
-  )
+    <div>
+      <h1>Hello World</h1>
+      {props.children}
+    </div>
+  );
 };
 
 export default App;
