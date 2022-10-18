@@ -7,7 +7,8 @@ import AppSummaryDisplay from './pages/AppSummaryDisplay';
 import AppDetailDisplay from './pages/AppDetailDisplay';
 import AddAppDisplay from './pages/AddAppDisplay';
 import EditAppDisplay from './pages/EditAppDisplay';
-import AuthorizationPage from './pages/AuthorizationPage';
+import AuthenticationPage from './pages/AuthenticationPage';
+import NotFound from './pages/NotFound';
 import { activeAppMock, appsListMock } from './mockData';
 
 const App = () => {
@@ -36,11 +37,12 @@ const App = () => {
       <div className="page-container">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/summary" element={<AppSummaryDisplay appsList={appsListMock} setActiveApp={setActiveApp} />} />
+          <Route path="/summary" element={<AppSummaryDisplay appsList={appsList} updateAppsList={updateAppsList} setActiveApp={setActiveApp} />} />
           <Route path="/appdetail" element={<AppDetailDisplay activeApp={activeApp} />} />
-          <Route path='/addapp' element={<AddAppDisplay updateAppsList={updateAppsList} />} />
-          <Route path='/editapp' element={<EditAppDisplay activeApp={activeApp} setActiveApp={setActiveApp} />} />
-          <Route path='/auth' element={<AuthorizationPage updateUserInfo ={updateUserInfo} updateAppsList={updateAppsList} />} />
+          <Route path='/addapp' element={<AddAppDisplay appsList={appsList} activeApp={activeApp} updateAppsList={updateAppsList} />} />
+          <Route path='/editapp' element={<EditAppDisplay activeApp={activeApp} setActiveApp={setActiveApp} appsList={appsList} updateAppsList={updateAppsList}/>} />
+          <Route path='/authenticate' element={<AuthenticationPage updateUserInfo={updateUserInfo}/>} />
+          <Route path='/*' element={<NotFound />} />
         </Routes>
       </div>
     </React.Fragment>

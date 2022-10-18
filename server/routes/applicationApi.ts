@@ -13,6 +13,10 @@ router.delete('/:id', applicationController.deleteApplication, (req: Request, re
   res.status(200).send(res.locals.deleted);
 });
 
+router.patch('/', applicationController.updateApplication, (req: Request, res: Response) => {
+  return res.status(200).send(res.locals.appInfo);
+});
+
 
 
 
