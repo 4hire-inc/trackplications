@@ -11,6 +11,10 @@ export type ActiveAppProps = {
 	activeApp: ActiveApp;
 };
 
+export type AuthProps ={
+	updateUserInfo: any;
+}
+
 export type ActiveApp = {
 	id: string;
 	user_id: string;
