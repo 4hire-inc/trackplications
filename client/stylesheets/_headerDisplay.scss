@@ -35,7 +35,16 @@ a:link {
 .linkedin-login {
   margin-left: 20px;
   background: none;
-	border: none;
+	border: 1px solid #0a66c2;
+  border-radius: 5px;
 	padding: 0;
   cursor:pointer;
+}
+
+.linkedin-login:hover {
+	border: 1px solid navy;
+}
+
+.logout-button {
+  margin-left: 20px;
 }

@@ -1,5 +1,6 @@
 import applicationModel from '../models/applicationModel';
 import { ApplicationController } from '../serverTypes';
+import { Request, Response, NextFunction } from 'express';
 
 const applicationController: ApplicationController = {
 // middleware to get all applications
@@ -32,6 +33,11 @@ const applicationController: ApplicationController = {
       });
     }
   },
+  // update application information for interviewing stage
+  updateApplication: async (req: any, res, next) => {
+    const userId = req.user?.id;
+    const appId = req.body.appId;
+
 
   //middleware to add an offer
   postOffer: async (req, res, next) => {
@@ -57,6 +63,39 @@ const applicationController: ApplicationController = {
     }
   }
  
+
+
+    const updateOptions = ['company', 'location', 'position', 'notes'];
+    const updateFields: string[] = [];
+    const updateValues: string[] = [];
+    updateOptions.forEach((option) => {
+      if (req.body[option]) {
+        updateFields.push(option);
+        updateValues.push(req.body[option]);
+      }
+    });
+    if (!updateFields.length) return next();
+    let updateAppInfoQuery = 'UPDATE applications SET ';
+    for (let i = 0; i < updateFields.length; i++) {
+      if (i !== updateFields.length - 1) updateAppInfoQuery += `${updateFields[i]} = '${updateValues[i]}', `;
+      else {
+        updateAppInfoQuery += `${updateFields[i]} = '${updateValues[i]}' WHERE user_id=($1) AND id=($2) RETURNING *`;
+      }
+    }
+    const params = [userId, appId];
+    applicationModel.query(updateAppInfoQuery, params, (err, app) => {
+      if (err) return next({
+        log: `applicationController: Error: ${err}`,
+        message: { error: 'Error in applicationController updateApplication' },
+        status: 500,
+      });
+      else {
+        res.locals.appInfo = app?.rows[0];
+        return next();
+      }
+    });
+
+  },
 
 }; 
 

@@ -9,10 +9,17 @@ router.get('/', applicationController.getApplications, (req: Request, res: Respo
   res.status(200).json(res.locals.applications);
 });
 
+
 //Post Request: route to add offer
 router.post('/', applicationController.postOffer, (req: Request, res: Response)=> {
   res.status(200).send('posted the offer!');
 });
+
+router.patch('/', applicationController.updateApplication, (req: Request, res: Response) => {
+  return res.status(200).send(res.locals.appInfo);
+});
+
+
 
 
 export default router; 
