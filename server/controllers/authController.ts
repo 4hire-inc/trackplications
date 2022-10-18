@@ -1,6 +1,7 @@
 import passport from 'passport';
 import { NextFunction, Request, Response } from 'express';
 import { Profile, Strategy as LinkedInStrategy } from 'passport-linkedin-oauth2';
+import db from '../models/applicationModel';
 
 type linkedInSettingsType = {
   clientID: string,
@@ -53,9 +54,42 @@ export const authController: authType = {
     }
     return next();
   },
-  getUserId: async (req: Request, res: Response, next: NextFunction) => {
-    console.log('in getUserId');
-    return next();
+  // add user to database if new user
+  getUserId: (req: any, res: Response, next: NextFunction) => {
+    const email = req.user.emails[0].value;
+    const userId = req.user.id;
+    if (!email) return next({
+      log: 'email not found on request body',
+      status: 400,
+      message: 'an error occurred in attempting to get the user ID in getUserId'
+    });
+    const checkUserExistsQuery = 'SELECT userid from users WHERE userid=($1)';
+    const params1 = [userId];
+    const createUserQuery = `
+      INSERT INTO users(email, userid)
+      VALUES($1, $2)
+      `;
+    const params2 = [email, userId];
+    db.query(checkUserExistsQuery, params1, (err, user) => {
+      if (err) return next({ log: `error in auth controller getUserId: ${err}`,
+        status: 500,
+        message: 'error occurred in auth controller getUserId' });
+      else {
+        if (user?.rows[0]) {
+          return next();
+        }
+        else {
+          db.query(createUserQuery, params2, (err) => {
+            if (err) return next({ log: `error in auth controller getUserId: ${err}`,
+              status: 500,
+              message: 'error occurred in auth controller getUserId' });
+            else {
+              return next();
+            }
+          });
+        }
+      }
+    });
   },
 };
 
