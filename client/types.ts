@@ -39,11 +39,12 @@ export type AppAttributeProps = {
 
 export type AppAttributeType = [string, string | number];
 
-export type AppList = (ActiveApp)[]; 
+export type AppsList = (ActiveApp)[]; 
 
 export type AppsSummaryType = {
 	appsList: AppList;
 	setActiveApp: any;
+	updateAppsList: any;
 }
 
 export type ApplicationListItemType = {

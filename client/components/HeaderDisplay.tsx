@@ -26,7 +26,7 @@ const HeaderDisplay = (props: (HeaderProps)) => {
             </button> */}
           </div>
         ) : (
-          <div>
+          <div className="center">
               Welcome, {props.userInfo.userName}!  {' '}
             <button className="linkedin-login" onClick={() => {navigate('/auth/linkedin');}}>
               <img
