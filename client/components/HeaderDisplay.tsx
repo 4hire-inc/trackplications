@@ -1,8 +1,8 @@
 import React from 'react';
-import { HeaderProps } from '../types';
+import type { HeaderProps } from '../types';
 import { Link } from 'react-router-dom';
 
-const HeaderDisplay = (props: HeaderProps) => {
+const HeaderDisplay = (props: (HeaderProps)) => {
   return (
     <div className='nav'>
       <div className='navleft'>
@@ -26,7 +26,7 @@ const HeaderDisplay = (props: HeaderProps) => {
           </div>
         ) : (
           <div>
-              Welcome, Guest!  {' '}
+              Welcome, {props.userInfo.userName}!  {' '}
             <button className="linkedin-login" type='submit'>
               <img
                 className='logo'

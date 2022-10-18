@@ -1,25 +1,12 @@
+export type UserInfo = {
+	userId: string;
+	userName: string;
+};
+
 export type HeaderProps = {
-	userState: {
-		userId: string;
-		userName: string;
-	};
+	userInfo: UserInfo
 };
 
-export type ApplicationType = {
-  company: string,
-  position: string,
-  location: string,
-  notes: string
-};
-
-export type AppsSummaryPropsType = {
-  appsList: (ApplicationType)[],
-  setActiveApp: any
-};
-
-// export type AppsListState = {
-
-// }
 export type ActiveAppProps = {
 	activeApp: ActiveApp;
 };
@@ -51,3 +38,14 @@ export type AppAttributeProps = {
 };
 
 export type AppAttributeType = [string, string | number];
+
+export type AppList = (ActiveApp)[]; 
+
+export type AppsSummaryType = {
+	appsList: AppList;
+	setActiveApp: any;
+}
+
+export type ApplicationListItemType = {
+	appInfo: ActiveApp
+}
