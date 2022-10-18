@@ -4,10 +4,12 @@ import type { AppsSummaryType, ActiveApp } from '../types';
 
 const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
   // props: appsList, setActiveApp
+  
   const appsArray: JSX.Element[] = [];
   props.appsList.forEach((appInfo:ActiveApp, i:number) => {
-    appsArray.push(<ApplicationListItem key={i} appInfo={appInfo} />);
+    appsArray.push(<ApplicationListItem key={i} appInfo={appInfo} setActiveApp={props.setActiveApp} />);
   });
+
 
   return (
     <React.Fragment>
