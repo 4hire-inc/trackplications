@@ -27,6 +27,28 @@ const applicationController: ApplicationController = {
       });
     }
   },
+  addApplication: (req: any, res, next) => {
+    const userId = req.user.id;
+
+    const { company, location, position, notes } = req.body;
+    const addApplicationQuery = 'INSERT INTO applications (company, location, position, notes, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *';
+
+    const params = [company, location, position, notes, userId];
+
+    applicationModel.query(addApplicationQuery, params, (err, app) => {
+      if (err) return next({
+        log: `applicationController: Error: ${err}`,
+        message: { error: 'Error in applicationController: addApplication' },
+        status: 500,
+      });
+      else {
+        res.locals.createdApp = app?.rows[0];
+        console.log('createdApp: ', res.locals.createdApp);
+        return next();
+      }
+    });
+
+  }
 
 
 

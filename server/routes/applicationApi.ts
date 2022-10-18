@@ -9,6 +9,10 @@ router.get('/', applicationController.getApplications, (req: Request, res: Respo
   res.status(200).json(res.locals.applications);
 });
 
+router.post('/', applicationController.addApplication, (req: Request, res: Response) => {
+  return res.status(200).send(res.locals.createdApp);
+});
+
 
 
 
