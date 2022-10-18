@@ -124,9 +124,8 @@ const applicationController: ApplicationController = {
 
   // update application and status information for interviewing stage
   updateApplication: async (req: any, res, next) => {
-    let userId = req.user?.id;
+    const userId = req.user?.id;
     const appId = req.body.appId;
-    if (!userId) userId = 'Z0CTnEeAPm';
 
     const updateAppOptions = ['company', 'location', 'position', 'notes'];
     const updateAppFields: string[] = [];
