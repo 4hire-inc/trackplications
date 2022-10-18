@@ -13,11 +13,6 @@ router.delete('/:id', applicationController.deleteApplication, (req: Request, re
   res.status(200).send(res.locals.deleted);
 });
 
-//Post Request: route to add offer
-router.post('/', applicationController.postOffer, (req: Request, res: Response)=> {
-  res.status(200).send('posted the offer!');
-});
-
 router.patch('/', applicationController.updateApplication, (req: Request, res: Response) => {
   return res.status(200).send(res.locals.appInfo);
 });
