@@ -26,6 +26,10 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
   };
 
   useEffect(() => {
+    if (!sessionStorage.getItem('isLoggedIn')) {
+      navigate('/');
+    }
+
     props.setActiveApp({
       id: '',
       user_id: '',
@@ -39,9 +43,9 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
       status_name: '',
       status_rank: 0,
       status_modifed_at: '' });
+
     fetchApplications();
     updateAppsArray(props.appsList);
-    console.log('appslist', props.appsList);
   }, []);
 
   return (
@@ -53,7 +57,7 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
           navigate('/addapp');
         }}
       >
-        {'+ Add Application'}
+        {'+ New Application'}
       </button>
       <div className="app-summary-heading"><h2>Your Applications</h2></div>
       <div className='table-container'>
@@ -65,7 +69,7 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
           <span className='table-heading'>Status</span>
         </div>
         <div>
-          {appsArray.length < 1 ? 'You don\'t have any applications.' : appsArray}
+          {appsArray.length < 1 ? <div className="center">{'You don\'t have any applications.'}</div> : appsArray}
         </div>
       </div>
     </React.Fragment>

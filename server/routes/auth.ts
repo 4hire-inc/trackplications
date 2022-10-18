@@ -14,7 +14,8 @@ router.get('/linkedin/callback', passport.authenticate('linkedin', {
 }), authController.getUserId, (req: any, res: Response): void => {
   res.cookie('code', req.query.code);
   res.cookie('email', req.user?.emails[0].value);
-  return res.redirect('../../');
+  res.cookie('name', req.user?.name.givenName);
+  return res.redirect('../../authenticate');
 });
 
 router.post('/logout', (req: Request, res: Response, next: NextFunction): void => {

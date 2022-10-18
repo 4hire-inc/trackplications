@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import EditButton from '../components/EditButton';
 import AppAttribute from '../components/AppAttribute';
 import type { ActiveAppProps, AppAttributeType } from '../types';
 
 function AppDetailDisplay (props: (ActiveAppProps)) {
-
+  const navigate = useNavigate();
   const appTitle = `${props.activeApp.company}: ${props.activeApp.position}`;
   // create an array of <AppAttribute /> components from the activeApp object in props.
   const attributes: AppAttributeType[] = Object.entries(props.activeApp);
@@ -17,6 +18,11 @@ function AppDetailDisplay (props: (ActiveAppProps)) {
     }
   );
   
+  useEffect(() => {
+    if (!sessionStorage.getItem('isLoggedIn')) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <div className="appDetailContainer">

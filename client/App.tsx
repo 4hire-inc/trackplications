@@ -7,7 +7,8 @@ import AppSummaryDisplay from './pages/AppSummaryDisplay';
 import AppDetailDisplay from './pages/AppDetailDisplay';
 import AddAppDisplay from './pages/AddAppDisplay';
 import EditAppDisplay from './pages/EditAppDisplay';
-import AuthorizationPage from './pages/AuthorizationPage';
+import AuthenticationPage from './pages/AuthenticationPage';
+import NotFound from './pages/NotFound';
 import { activeAppMock, appsListMock } from './mockData';
 
 const App = () => {
@@ -15,7 +16,7 @@ const App = () => {
     userId: '',
     userName: 'Guest'
   });
-  const [ appsList, updateAppsList ] = useState(appsListMock);
+  const [ appsList, updateAppsList ] = useState([]);
   const [ activeApp, setActiveApp ] = useState({
     id: '',
     user_id: '',
@@ -40,7 +41,8 @@ const App = () => {
           <Route path="/appdetail" element={<AppDetailDisplay activeApp={activeApp} />} />
           <Route path='/addapp' element={<AddAppDisplay appsList={appsList} activeApp={activeApp} updateAppsList={updateAppsList} />} />
           <Route path='/editapp' element={<EditAppDisplay activeApp={activeApp} setActiveApp={setActiveApp} appsList={appsList} updateAppsList={updateAppsList}/>} />
-          <Route path='/authentication' element={<AuthorizationPage />} />
+          <Route path='/authenticate' element={<AuthenticationPage updateUserInfo={updateUserInfo}/>} />
+          <Route path='/*' element={<NotFound />} />
         </Routes>
       </div>
     </React.Fragment>
