@@ -1,8 +1,9 @@
 import React from 'react';
 import type { HeaderProps } from '../types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const HeaderDisplay = (props: (HeaderProps)) => {
+  const navigate = useNavigate();
   return (
     <div className='nav'>
       <div className='navleft'>
@@ -27,7 +28,7 @@ const HeaderDisplay = (props: (HeaderProps)) => {
         ) : (
           <div>
               Welcome, {props.userInfo.userName}!  {' '}
-            <button className="linkedin-login" type='submit'>
+            <button className="linkedin-login" onClick={() => {navigate('/auth/linkedin');}}>
               <img
                 className='logo'
                 src='/assets/loginicon.png'

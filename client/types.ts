@@ -47,5 +47,6 @@ export type AppsSummaryType = {
 }
 
 export type ApplicationListItemType = {
-	appInfo: ActiveApp
+	appInfo: ActiveApp;
+	setActiveApp: any;
 }
