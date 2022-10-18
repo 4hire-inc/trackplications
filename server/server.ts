@@ -1,7 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import path from 'path';
 import { GlobalError } from './serverTypes';
-import applicationApi from './routes/applicationApi';
+import applicationRouter from './routes/applicationApi';
 
 
 const app = express();
@@ -20,11 +20,12 @@ app.get('/bundle.js', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/bundle.js'));
 });
 
+app.use('/api/app', applicationRouter);
+
 app.get('*', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
-app.use('/app', applicationApi);
 
 app.use((req: Request, res: Response) => {
   return res.status(404);

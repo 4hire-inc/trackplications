@@ -5,8 +5,11 @@ const router = express.Router();
 
 // Get Request: route to send back all application info
 router.get('/', applicationController.getApplications, (req: Request, res: Response)=> {
-  res.status(200);
+  console.log('got applications!');
+  res.status(200).json(res.locals.applications);
 });
+
+
 
 
 export default router; 
