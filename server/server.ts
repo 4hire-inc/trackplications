@@ -1,14 +1,31 @@
+import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
 import path from 'path';
+import session from 'express-session';
+import passport from 'passport';
+
 import { GlobalError } from './serverTypes';
+import authRoutes from './routes/auth';
 import applicationRouter from './routes/applicationApi';
 
 
 const app = express();
 const PORT = 3000;
 
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || ''
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+
+
+
+app.use('/auth', authRoutes);
 
 app.use(
   '/stylesheets',
