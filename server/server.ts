@@ -7,6 +7,7 @@ import passport from 'passport';
 import { GlobalError } from './serverTypes';
 import authRoutes from './routes/auth';
 import applicationRouter from './routes/applicationApi';
+import offerRouter from './routes/offer';
 
 
 const app = express();
@@ -43,6 +44,7 @@ app.get('/bundle.js', (req: Request, res: Response) => {
 });
 
 app.use('/api/app', applicationRouter);
+app.use('/api/offer', offerRouter);
 
 app.get('*', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
