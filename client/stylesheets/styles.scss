@@ -24,10 +24,18 @@ body {
 .page-container {
   width: 800px;
   margin: 100px auto;
+  position: relative;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 // IMPORT COMPONENT CSS FILES HERE (globals override component)
 @import "appDetailDisplay";
 @import "appAttribute";
+@import "editAppDisplay";
 @import "headerDisplay";
 @import "appSummaryDisplay";

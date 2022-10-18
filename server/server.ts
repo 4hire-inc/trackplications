@@ -27,6 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.use('/auth', authRoutes);
+app.use('/api/app', applicationRouter);
 
 app.use(
   '/stylesheets',
