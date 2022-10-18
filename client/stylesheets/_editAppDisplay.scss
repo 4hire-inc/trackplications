@@ -1,0 +1,39 @@
+// styling for "./pages/AppDetailDisplay.tsx"
+.editAppContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid black;
+  gap: 1rem;
+  form {
+    padding: 0;
+  }
+}
+.editAppButtonContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.editAppAttributesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 0.5rem 1rem;
+}
+
+
+.editFormInputContainer {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  
+  label {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  input {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
