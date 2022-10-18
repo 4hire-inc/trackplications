@@ -26,6 +26,19 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
   };
 
   useEffect(() => {
+    props.setActiveApp({
+      id: '',
+      user_id: '',
+      company: '',
+      location: '',
+      position: '',
+      notes: '',
+      status_id: '',
+      offer_id: '',
+      modified_at: '',
+      status_name: '',
+      status_rank: 0,
+      status_modifed_at: '' });
     fetchApplications();
     updateAppsArray(props.appsList);
     console.log('appslist', props.appsList);
