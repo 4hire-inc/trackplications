@@ -8,23 +8,23 @@ import AppDetailDisplay from './pages/AppDetailDisplay';
 import AddAppDisplay from './pages/AddAppDisplay';
 import EditAppDisplay from './pages/EditAppDisplay';
 import AuthorizationPage from './pages/AuthorizationPage';
-import { activeAppMock } from './mockData';
+import { activeAppMock, appsListMock } from './mockData';
 
 const App = () => {
   const [ userInfo, updateUserInfo ] = useState({
     userId: '',
-    userName: ''
+    userName: 'Guest'
   });
   const [ appsList, updateAppsList ] = useState([]);
   const [ activeApp, setActiveApp ] = useState({});
 
   return(
     <React.Fragment>
-      <HeaderDisplay userState={userInfo} />
+      <HeaderDisplay userInfo={userInfo} />
       <div className="page-container">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/summary" element={<AppSummaryDisplay appsList={appsList} setActiveApp={setActiveApp} />} />
+          <Route path="/summary" element={<AppSummaryDisplay appsList={appsListMock} setActiveApp={setActiveApp} />} />
           <Route path="/appdetail" element={<AppDetailDisplay activeApp={activeAppMock} />} />
           <Route path='/addapp' element={<AddAppDisplay updateAppsList={updateAppsList} />} />
           <Route path='/editapp' element={<EditAppDisplay activeApp={activeApp} setActiveApp={setActiveApp} />} />

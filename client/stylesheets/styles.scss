@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Oswald:wght@500&family=Roboto:wght@300;400;500;700;900&display=swap');
+
 // GLOBAL CSS HERE
 $font-stack: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 $font-size: 16px;
@@ -14,7 +16,18 @@ body {
   background-color: $background-color;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.page-container {
+  width: 800px;
+  margin: 100px auto;
+}
 
 // IMPORT COMPONENT CSS FILES HERE (globals override component)
 @import "appDetailDisplay";
 @import "appAttribute";
+@import "headerDisplay";
+@import "appSummaryDisplay";
