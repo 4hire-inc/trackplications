@@ -3,12 +3,12 @@ import { ApplicationController } from '../serverTypes';
 
 const applicationController: ApplicationController = {
 // middleware to get all applications
-  getApplications: async (req: any, res, next) => {
+  getApplications: async (req, res, next) => {
     try {
       const queryString = `
       SELECT *
       FROM applications AS a, users AS u, offers AS o, status AS s
-      WHERE a.user_id = o.user_id
+      WHERE a.user_id = u.userid
       AND a.status_id = s.id
       AND a.offer_id = o.id
       `;
