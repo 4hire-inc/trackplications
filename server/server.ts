@@ -35,12 +35,11 @@ app.get('/bundle.js', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/bundle.js'));
 });
 
-app.get('/', (req: Request, res: Response) => {
+app.get('*', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 app.use((req: Request, res: Response) => {
-  console.log('error handler unknown route');
   return res.status(404);
 });
 

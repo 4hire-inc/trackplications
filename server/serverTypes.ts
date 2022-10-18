@@ -3,3 +3,4 @@ export type GlobalError = {
   status: number;
   message: { err: string };
 };
+
