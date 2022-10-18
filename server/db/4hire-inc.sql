@@ -34,7 +34,7 @@ Position varchar(255),
 Notes varchar(500),
 Status_ID int,
 FOREIGN KEY (Status_ID) REFERENCES Status(id),
-Offer_ID int,
+Offer_ID int,s
 FOREIGN KEY (Offer_ID) REFERENCES Offer(id),
 Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 Modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

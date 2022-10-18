@@ -10,6 +10,7 @@ export type ApplicationController = {
   getApplications: RequestHandler,
   deleteApplication: RequestHandler,
   updateApplication: RequestHandler,
+  addApplication: RequestHandler,
 }
 
 export type OfferController = {
