@@ -8,5 +8,10 @@ export type GlobalError = {
 
 export type ApplicationController = {
   getApplications: RequestHandler;
+  updateApplication: RequestHandler;
+}
+
+export type OfferController = {
+  updateOffer: RequestHandler;
 }
 
