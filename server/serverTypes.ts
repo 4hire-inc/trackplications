@@ -7,6 +7,7 @@ export type GlobalError = {
 };
 
 export type ApplicationController = {
-  getApplications: RequestHandler;
+  getApplications: RequestHandler,
+  deleteApplication: RequestHandler,
 }
 
