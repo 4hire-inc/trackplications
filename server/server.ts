@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.use('/auth', authRoutes);
+app.use('/api/app', applicationRouter);
 
 app.use(
   '/stylesheets',
@@ -42,7 +43,7 @@ app.get('/bundle.js', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/bundle.js'));
 });
 
-app.use('/api/app', applicationRouter);
+
 
 app.get('*', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
