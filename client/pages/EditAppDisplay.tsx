@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import type { EditAppProps, AppAttributeType, ActiveApp } from '../types';
 
@@ -28,14 +29,20 @@ function EditAppDisplay (props: (EditAppProps)) {
     }
   );
 
-  // updates the AppList and ActiveApp state objects.
+  // updates the AppList and ActiveApp state objects, and pushes AppList to the DB.
   const handleSubmit = () => {
     const appListIndex = localAppsList.indexOf(
       localAppsList.find((el: ActiveApp) => el.id === localActiveApp.id)
     );
     props.setActiveApp(localActiveApp);
+    // ! this should be replaced when the patch route is complete
     localAppsList[appListIndex] = localActiveApp;
     props.updateAppsList(localAppsList);
+    // ! this should replace the above logic when the patch route is complete
+    // axios.patch('/api/app', localAppsList).then((res) => {
+    //   console.log('res data', res.data);
+    //   props.updateAppsList(res.data);
+    // });
 
     navigate('/appdetail');
   };
