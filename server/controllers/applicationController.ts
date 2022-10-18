@@ -43,7 +43,6 @@ const applicationController: ApplicationController = {
       });
       else {
         res.locals.createdApp = app?.rows[0];
-        console.log('createdApp: ', res.locals.createdApp);
         return next();
       }
     });
