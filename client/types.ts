@@ -42,7 +42,7 @@ export type AppAttributeType = [string, string | number];
 export type AppsList = (ActiveApp)[]; 
 
 export type AppsSummaryType = {
-	appsList: AppList;
+	appsList: AppsList;
 	setActiveApp: any;
 	updateAppsList: any;
 }

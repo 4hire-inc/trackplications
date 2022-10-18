@@ -15,7 +15,7 @@ const App = () => {
     userId: '',
     userName: 'Guest'
   });
-  const [ appsList, updateAppsList ] = useState(appsListMock);
+  const [ appsList, updateAppsList ] = useState([]);
   const [ activeApp, setActiveApp ] = useState({
     id: '',
     user_id: '',
@@ -40,7 +40,7 @@ const App = () => {
           <Route path="/appdetail" element={<AppDetailDisplay activeApp={activeApp} />} />
           <Route path='/addapp' element={<AddAppDisplay updateAppsList={updateAppsList} />} />
           <Route path='/editapp' element={<EditAppDisplay activeApp={activeApp} setActiveApp={setActiveApp} />} />
-          <Route path='/auth' element={<AuthorizationPage updateUserInfo ={updateUserInfo} updateAppsList={updateAppsList} />} />
+          <Route path='/authentication' element={<AuthorizationPage />} />
         </Routes>
       </div>
     </React.Fragment>
