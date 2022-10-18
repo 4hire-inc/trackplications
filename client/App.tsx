@@ -39,7 +39,7 @@ const App = () => {
           <Route path="/summary" element={<AppSummaryDisplay appsList={appsList} updateAppsList={updateAppsList} setActiveApp={setActiveApp} />} />
           <Route path="/appdetail" element={<AppDetailDisplay activeApp={activeApp} />} />
           <Route path='/addapp' element={<AddAppDisplay appsList={appsList} activeApp={activeApp} updateAppsList={updateAppsList} />} />
-          <Route path='/editapp' element={<EditAppDisplay activeApp={activeApp} setActiveApp={setActiveApp} />} />
+          <Route path='/editapp' element={<EditAppDisplay activeApp={activeApp} setActiveApp={setActiveApp} appsList={appsList} updateAppsList={updateAppsList}/>} />
           <Route path='/authentication' element={<AuthorizationPage />} />
         </Routes>
       </div>
