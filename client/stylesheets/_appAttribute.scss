@@ -1,0 +1,9 @@
+.appAttributeWrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  h4, p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+}
