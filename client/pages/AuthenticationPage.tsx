@@ -42,7 +42,7 @@ const AuthenticationPage = (props: AuthProps) => {
 
   return (
     <div className="center">
-      <h4>Successfully logged in with Github. Redirecting you in {timer} seconds...</h4>
+      <h4>Successfully logged in with Linkedin. Redirecting you in {timer} seconds...</h4>
     </div>
   );
 };
