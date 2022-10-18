@@ -34,7 +34,30 @@ const offerController: OfferController = {
         return next();
       }
     });
+  },
 
+  //middleware to add an offer
+  postOffer: async (req, res, next) => {
+    console.log('req.body:', req.body);
+    try {
+      const { salary, sign_on_bonus, start_date, notes } = req.body;
+      const queryString = `
+      INSERT INTO offers (salary, sign_on_bonus, start_date, notes)
+      VALUES ($1, $2, $3, $4);`;
+      const params = [salary, sign_on_bonus, start_date, notes];
+      applicationModel.query(queryString, params, (err, result) => {
+        if (err) return next({ err });
+        // console.log('result:', result);
+        res.locals.offers = result;
+        return next();
+      });
+    } catch (error) {
+      return next({
+        log: `applicationController: Error: ${error}`,
+        message: { error: 'Error in applicationController getApplications' },
+        status: 500,
+      });
+    }
   }
 };
 
