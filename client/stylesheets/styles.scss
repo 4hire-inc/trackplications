@@ -1,0 +1,20 @@
+// GLOBAL CSS HERE
+$font-stack: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-size: 16px;
+$text-color-primary: rgb(30,30,30);
+$background-color: rgb(250,250,250);
+
+:root {
+  font-size: $font-size;
+}
+
+body {
+  font-family: $font-stack;
+  color: $text-color-primary;
+  background-color: $background-color;
+}
+
+
+// IMPORT COMPONENT CSS FILES HERE (globals override component)
+@import "appDetailDisplay";
+@import "appAttribute";

@@ -6,6 +6,8 @@ import passport from 'passport';
 
 import { GlobalError } from './serverTypes';
 import authRoutes from './routes/auth';
+import applicationRouter from './routes/applicationApi';
+
 
 const app = express();
 const PORT = 3000;
@@ -35,9 +37,12 @@ app.get('/bundle.js', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/bundle.js'));
 });
 
+app.use('/api/app', applicationRouter);
+
 app.get('*', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
 });
+
 
 app.use((req: Request, res: Response) => {
   return res.status(404);
