@@ -7,14 +7,16 @@ import AppDetailDisplay from './pages/AppDetailDisplay';
 import AddAppDisplay from './pages/AddAppDisplay';
 import EditAppDisplay from './pages/EditAppDisplay';
 import AuthorizationPage from './pages/AuthorizationPage';
+import './stylesheets/styles.scss';
 
 const App = () => {
   const [ userInfo, updateUserInfo ] = useState({
     userId: '',
     userName: ''
   });
-  const [ appsList, updateAppsList ] = useState([]);
-  const [ activeApp, setActiveApp ] = useState({});
+  // const [ appsList, updateAppsList ] = useState([]);
+  const [ appsList, updateAppsList ] = useState([ { company: 'Amazon', location: 'NYC', position: 'Software Engineer', notes: 'afsfasdf' }, { company: 'Microsoft', location: 'Seattle', position: 'Software Engineer', notes: 'fasdffdafsadf' }]);
+  const [ activeApp, setActiveApp ] = useState({ company: 'Amazon', location: 'NYC', position: 'Software Engineer', notes: 'afsfasdf' });
 
   return(
     <React.Fragment>

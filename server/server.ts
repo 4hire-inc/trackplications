@@ -13,6 +13,11 @@ app.use(
   express.static(path.join(__dirname, '../client/stylesheets'))
 );
 
+app.use(
+  '/assets',
+  express.static(path.join(__dirname, '../client/assets'))
+);
+
 
 app.get('/bundle.js', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/bundle.js'));

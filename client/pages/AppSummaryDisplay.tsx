@@ -1,8 +1,22 @@
 import React from 'react';
+import ApplicationListItem from '../components/ApplicationListItem';
+import { AppsSummaryPropsType } from '../types';
 
-const AppSummaryDisplay = (props: any) => {
+const AppSummaryDisplay = (props: AppsSummaryPropsType ) => {
+  // props: appsList, setActiveApp
+  const appsArray: JSX.Element[] = [];
+  props.appsList.forEach((appInfo, i) => {
+    appsArray.push(<ApplicationListItem key={i} appInfo={appInfo} />);
+  });
+
   return (
-    <div>AppSummaryDisplay</div>
+    <React.Fragment>
+      <div>AppSummaryDisplay</div>
+      <ul>
+        {appsArray}
+      </ul>
+    </React.Fragment>
+    
   );
 };
 
