@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
 import path from 'path';
 import session from 'express-session';
@@ -9,16 +10,16 @@ import authRoutes from './routes/auth';
 const app = express();
 const PORT = 3000;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
 app.use(
   session({
-    secret: 'SECRET'
+    secret: process.env.SESSION_SECRET || ''
   })
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 
 

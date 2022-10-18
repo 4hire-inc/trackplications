@@ -19,8 +19,8 @@ type DoneType = (err: Error | null, user: Express.User) => void
 
 
 const linkedInSettings: linkedInSettingsType = {
-  clientID: '78mfkk2j9t89tb',
-  clientSecret: 'KSIcKntJ36iDuOd2',
+  clientID: process.env.CLIENT_ID || '',
+  clientSecret: process.env.CLIENT_SECRET || '',
   callbackURL: 'http://localhost:3000/auth/linkedin/callback',
   scope:['r_emailaddress', 'r_liteprofile'],
 };
