@@ -1,7 +1,7 @@
 -- ElepantSQL database dump 
 
 CREATE TABLE Users (
-UserID int NOT NULL PRIMARY KEY, 
+UserID varchar(255) NOT NULL PRIMARY KEY, 
 Email varchar(255),
 Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 Modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -26,7 +26,7 @@ EXECUTE PROCEDURE updated_time();
 
 CREATE TABLE Applications (
 id int NOT NULL PRIMARY KEY, 
-User_ID int,
+User_ID varchar(255),
 FOREIGN KEY (User_ID) REFERENCES Users(UserID),
 Company varchar(255),
 Location varchar(255),
