@@ -1,6 +1,8 @@
 import express, { NextFunction, Request, Response } from 'express';
 import path from 'path';
 import { GlobalError } from './serverTypes';
+import applicationApi from './routes/applicationApi';
+
 
 const app = express();
 const PORT = 3000;
@@ -21,6 +23,8 @@ app.get('/bundle.js', (req: Request, res: Response) => {
 app.get('*', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
 });
+
+app.use('/app', applicationApi);
 
 app.use((req: Request, res: Response) => {
   return res.status(404);

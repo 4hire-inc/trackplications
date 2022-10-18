@@ -1,3 +1,4 @@
+import { RequestHandler } from 'express';
 
 export type GlobalError = {
   log: string;
@@ -5,3 +6,6 @@ export type GlobalError = {
   message: { err: string };
 };
 
+export type ApplicationController = {
+  getApplications: RequestHandler;
+}
