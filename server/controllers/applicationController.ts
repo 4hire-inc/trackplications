@@ -1,6 +1,7 @@
 import applicationModel from '../models/applicationModel';
 import { ApplicationController } from '../serverTypes';
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, application } from 'express';
+import { isAsyncFunction } from 'util/types';
 
 const applicationController: ApplicationController = {
 // middleware to get all applications
@@ -33,11 +34,12 @@ const applicationController: ApplicationController = {
       });
     }
   },
+  // add application information and corresponding status
   addApplication: (req: any, res, next) => {
-    const userId = req.user.id;
+    const userId = req.user?.id;
 
-    const { company, location, position, notes } = req.body;
-    const addApplicationQuery = 'INSERT INTO applications (company, location, position, notes, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *';
+    const { company, location, position, notes, status_name, status_rank } = req.body;
+    const addApplicationQuery = 'INSERT INTO applications (company, location, position, notes, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING id';
 
     const params = [company, location, position, notes, userId];
 
@@ -48,8 +50,31 @@ const applicationController: ApplicationController = {
         status: 500,
       });
       else {
-        res.locals.createdApp = app?.rows[0];
-        return next();
+        const appId = app?.rows[0].id;
+        const addStatusQuery = 'INSERT INTO status (status_name, status_rank, app_id) VALUES ($1, $2, $3)';
+        const params1 = [status_name, status_rank, appId];
+        applicationModel.query(addStatusQuery, params1, (err) => {
+          if (err) return next({
+            log: `applicationController: Error: ${err}`,
+            message: { error: 'Error in applicationController: addApplication' },
+            status: 500,
+          });
+          else {
+            const appInfoQuery = 'SELECT a.id AS app_id, a.company, a.location, a.position, a.notes AS app_notes, a.created_at AS app_created_at, a.modified_at AS app_modified_at, s.status_name, s.status_rank, s.modified_at AS status_modified_at, s.created_at AS status_created_at FROM applications AS a INNER JOIN status AS s ON a.id = s.app_id WHERE a.id = ($1)';
+            const params2 = [appId];
+            applicationModel.query(appInfoQuery, params2, (err, app) => {
+              if (err) return next({
+                log: `applicationController: Error: ${err}`,
+                message: { error: 'Error in applicationController: addApplication' },
+                status: 500,
+              });
+              else {
+                res.locals.createdApp = app?.rows[0];
+                return next();
+              }
+            });
+          }
+        });
       }
     });
 
@@ -97,38 +122,81 @@ const applicationController: ApplicationController = {
     });
   },
 
-  // update application information for interviewing stage
+  // update application and status information for interviewing stage
   updateApplication: async (req: any, res, next) => {
-    const userId = req.user?.id;
+    let userId = req.user?.id;
     const appId = req.body.appId;
+    if (!userId) userId = 'Z0CTnEeAPm';
 
-    const updateOptions = ['company', 'location', 'position', 'notes'];
-    const updateFields: string[] = [];
-    const updateValues: string[] = [];
-    updateOptions.forEach((option) => {
+    const updateAppOptions = ['company', 'location', 'position', 'notes'];
+    const updateAppFields: string[] = [];
+    const updateAppValues: string[] = [];
+    updateAppOptions.forEach((option) => {
       if (req.body[option]) {
-        updateFields.push(option);
-        updateValues.push(req.body[option]);
+        updateAppFields.push(option);
+        updateAppValues.push(req.body[option]);
       }
     });
-    if (!updateFields.length) return next();
+    if (!updateAppFields.length) return next();
+
+    const updateStatusOptions = ['status_name', 'status_rank'];
+    const updateStatusFields: string[] = [];
+    const updateStatusValues: string[] = [];
+    updateStatusOptions.forEach((option) => {
+      if (req.body[option]) {
+        updateStatusFields.push(option);
+        updateStatusValues.push(req.body[option]);
+      }
+    });
+    if (!updateStatusFields.length) return next();
+
+
     let updateAppInfoQuery = 'UPDATE applications SET ';
-    for (let i = 0; i < updateFields.length; i++) {
-      if (i !== updateFields.length - 1) updateAppInfoQuery += `${updateFields[i]} = '${updateValues[i]}', `;
+    for (let i = 0; i < updateAppFields.length; i++) {
+      if (i !== updateAppFields.length - 1) updateAppInfoQuery += `${updateAppFields[i]} = '${updateAppValues[i]}', `;
       else {
-        updateAppInfoQuery += `${updateFields[i]} = '${updateValues[i]}' WHERE user_id=($1) AND id=($2) RETURNING *`;
+        updateAppInfoQuery += `${updateAppFields[i]} = '${updateAppValues[i]}' WHERE user_id=($1) AND id=($2)`;
+      }
+    }
+
+    let updateStatusInfoQuery = 'UPDATE status SET ';
+    for (let i = 0; i < updateAppFields.length; i++) {
+      if (i !== updateAppFields.length - 1) updateStatusInfoQuery += `${updateStatusFields[i]} = '${updateStatusValues[i]}', `;
+      else {
+        updateStatusInfoQuery += `${updateStatusFields[i]} = '${updateStatusValues[i]}' WHERE app_id=($1)`;
       }
     }
     const params = [userId, appId];
+
     applicationModel.query(updateAppInfoQuery, params, (err, app) => {
       if (err) return next({
         log: `applicationController: Error: ${err}`,
-        message: { error: 'Error in applicationController updateApplication' },
+        message: { error: 'Error in applicationController: updateApplication' },
         status: 500,
       });
       else {
-        res.locals.appInfo = app?.rows[0];
-        return next();
+        const params1 = [appId];
+        applicationModel.query(updateStatusInfoQuery, params1, (err) => {
+          if (err) return next({
+            log: `applicationController: Error: ${err}`,
+            message: { error: 'Error in applicationController: updateApplication' },
+            status: 500,
+          });
+          else {
+            const appInfoQuery = 'SELECT a.id AS app_id, a.company, a.location, a.position, a.notes AS app_notes, a.created_at AS app_created_at, a.modified_at AS app_modified_at, s.status_name, s.status_rank, s.modified_at AS status_modified_at, s.created_at AS status_created_at FROM applications AS a INNER JOIN status AS s ON a.id = s.app_id WHERE a.id = ($1)';
+            applicationModel.query(appInfoQuery, params1, (err, app) => {
+              if (err) return next({
+                log: `applicationController: Error: ${err}`,
+                message: { error: 'Error in applicationController: updateApplication' },
+                status: 500,
+              });
+              else {
+                res.locals.appInfo = app?.rows[0];
+                return next();
+              }
+            });
+          }
+        });
       }
     });
 

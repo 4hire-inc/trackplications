@@ -1,8 +1,9 @@
 import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
 import path from 'path';
-import session from 'express-session';
 import passport from 'passport';
+
+import cookieSession from 'cookie-session';
 
 import { GlobalError } from './serverTypes';
 import authRoutes from './routes/auth';
@@ -14,8 +15,9 @@ const app = express();
 const PORT = 3000;
 
 app.use(
-  session({
-    secret: process.env.SESSION_SECRET || ''
+  cookieSession({
+    name: 'linkedIn-auth-session',
+    keys: [process.env.SESSION_SECRET || '']
   })
 );
 app.use(passport.initialize());
