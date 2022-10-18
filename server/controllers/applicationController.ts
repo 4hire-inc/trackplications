@@ -6,7 +6,7 @@ const applicationController: ApplicationController = {
 // middleware to get all applications
   getApplications: async (req: any, res, next) => {
     try {
-      let id = req.user?.id;
+      const id = req.user?.id;
       const queryString = `
       SELECT a.id, a.company, a.location, a.position, a.notes, u.userID, a.modified_at, o.salary, o.sign_on_bonus, o.start_date, o.notes as offer_notes, o.id as offer_id,  o.created_at as offer_created_at, o.modified_at as offer_modified_at,s.status_name, s.status_rank, s.created_at AS status_created_at, s.modified_at AS status_modified_at, s.id AS status_id
           FROM applications AS a
@@ -33,37 +33,53 @@ const applicationController: ApplicationController = {
       });
     }
   },
+  // delete application and associated status and offer information
+  deleteApplication: (req: any, res, next) => {
+    const appId = req.params.id;
+    const userId = req.user?.id;
+    
+    const deleteStatusQuery = `DELETE FROM status WHERE app_id='${appId}'`;
+    const deleteOfferQuery = `DELETE FROM offers WHERE app_id='${appId}'`;
+
+    const deleteApplicationQuery = 'DELETE FROM applications WHERE id=($1) AND user_id=($2)';
+    const params = [appId, userId];
+
+    applicationModel.query(deleteStatusQuery, undefined, (err) => {
+      if (err) return next({
+        log: `applicationController: Error: ${err}`,
+        message: { error: 'Error in applicationController: deleteApplication (delete status)' },
+        status: 500,
+      });
+      applicationModel.query(deleteOfferQuery, undefined, (err) => {
+        if (err) return next({
+          log: `applicationController: Error: ${err}`,
+          message: { error: 'Error in applicationController: deleteApplication (delete offer)' },
+          status: 500,
+        });
+        else {
+          applicationModel.query(deleteApplicationQuery, params, (err) => {
+            if (err) return next({
+              log: `applicationController: Error: ${err}`,
+              message: { error: 'Error in applicationController: deleteApplication (delete application)' },
+              status: 500,
+            });
+            else {
+              res.locals.deleted = {
+                id: appId,
+                confirmation: true,
+              };
+              return next();
+            }
+          });
+        }
+      });
+    });
+  },
+
   // update application information for interviewing stage
   updateApplication: async (req: any, res, next) => {
     const userId = req.user?.id;
     const appId = req.body.appId;
-
-
-  //middleware to add an offer
-  postOffer: async (req, res, next) => {
-    console.log('req.body:', req.body);
-    try {
-      const { salary, sign_on_bonus, start_date, notes } = req.body;
-      const queryString = `
-      INSERT INTO offers (salary, sign_on_bonus, start_date, notes)
-      VALUES ($1, $2, $3, $4);`;
-      const params = [salary, sign_on_bonus, start_date, notes];
-      applicationModel.query(queryString, params, (err, result) => {
-        if (err) return next({ err });
-        // console.log('result:', result);
-        res.locals.offers = result;
-        return next();
-      });
-    } catch (error) {
-      return next({
-        log: `applicationController: Error: ${error}`,
-        message: { error: 'Error in applicationController getApplications' },
-        status: 500,
-      });
-    }
-  }
- 
-
 
     const updateOptions = ['company', 'location', 'position', 'notes'];
     const updateFields: string[] = [];

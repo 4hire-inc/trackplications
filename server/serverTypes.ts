@@ -7,12 +7,13 @@ export type GlobalError = {
 };
 
 export type ApplicationController = {
-  getApplications: RequestHandler;
-  postOffer: RequestHandler;
-  updateApplication: RequestHandler;
+  getApplications: RequestHandler,
+  deleteApplication: RequestHandler,
+  updateApplication: RequestHandler,
 }
 
 export type OfferController = {
-  updateOffer: RequestHandler;
+  updateOffer: RequestHandler,
+  postOffer: RequestHandler,
 }
 
