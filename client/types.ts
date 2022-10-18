@@ -4,7 +4,7 @@ export type UserInfo = {
 };
 
 export type HeaderProps = {
-	userInfo: UserInfo
+	userInfo: UserInfo;
 };
 
 export type ActiveAppProps = {
@@ -39,14 +39,19 @@ export type AppAttributeProps = {
 
 export type AppAttributeType = [string, string | number];
 
-export type AppList = (ActiveApp)[]; 
+export type AppList = ActiveApp[];
 
 export type AppsSummaryType = {
 	appsList: AppList;
 	setActiveApp: any;
-}
+};
 
 export type ApplicationListItemType = {
 	appInfo: ActiveApp;
 	setActiveApp: any;
-}
+};
+
+export type EditAppProps = {
+	activeApp: ActiveApp;
+	setActiveApp: any;
+};
