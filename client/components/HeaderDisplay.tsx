@@ -24,7 +24,7 @@ const HeaderDisplay = (props: (HeaderProps)) => {
         <Link to='/' className='nav-logo'>
           <img
             className='logo'
-            src='/assets/tracklogo1.png'
+            src='/assets/tracklogo.png'
             height='30'
             alt='Trackplications Logo'
           />
