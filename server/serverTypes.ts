@@ -8,5 +8,6 @@ export type GlobalError = {
 
 export type ApplicationController = {
   getApplications: RequestHandler;
+  postOffer: RequestHandler;
 }
 
