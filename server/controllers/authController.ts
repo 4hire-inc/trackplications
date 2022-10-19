@@ -1,5 +1,5 @@
 import passport from 'passport';
-import { NextFunction, Request, Response } from 'express';
+import { RequestHandler } from 'express';
 import { Profile, Strategy as LinkedInStrategy } from 'passport-linkedin-oauth2';
 import db from '../models/applicationModel';
 
@@ -11,8 +11,8 @@ type linkedInSettingsType = {
 }
 
 type authType = {
-  isLoggedIn: (req: Request, res: Response, next: NextFunction) => void;
-  getUserId: (req: Request, res: Response, next: NextFunction) => void;
+  isLoggedIn: RequestHandler;
+  addUser: RequestHandler;
 };
 
 type DoneType = (err: Error | null, user: Express.User) => void
@@ -48,14 +48,14 @@ passport.use(
 );
 
 export const authController: authType = {
-  isLoggedIn: (req: Request, res: Response, next: NextFunction) => {
+  isLoggedIn: (req, res, next) => {
     if (!req.user || !req.isAuthenticated()) {
       return res.status(401).json('Error: User not authorized');
     }
     return next();
   },
   // add user to database if new user
-  getUserId: (req: any, res: Response, next: NextFunction) => {
+  addUser: (req: any, res, next) => {
     const email = req.user.emails[0].value;
     const userId = req.user.id;
     if (!email) return next({
@@ -68,6 +68,7 @@ export const authController: authType = {
     const createUserQuery = `
       INSERT INTO users(email, userid)
       VALUES($1, $2)
+      RETURNING userid
       `;
     const params2 = [email, userId];
     db.query(checkUserExistsQuery, params1, (err, user) => {
@@ -79,7 +80,7 @@ export const authController: authType = {
           return next();
         }
         else {
-          db.query(createUserQuery, params2, (err) => {
+          db.query(createUserQuery, params2, (err, user) => {
             if (err) return next({ log: `error in auth controller getUserId: ${err}`,
               status: 500,
               message: 'error occurred in auth controller getUserId' });
@@ -90,7 +91,7 @@ export const authController: authType = {
         }
       }
     });
-  },
+  }
 };
 
 export default passport;

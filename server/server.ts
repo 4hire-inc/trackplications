@@ -4,6 +4,7 @@ import path from 'path';
 import passport from 'passport';
 
 import cookieSession from 'cookie-session';
+import session from 'express-session';
 
 import { GlobalError } from './serverTypes';
 import authRoutes from './routes/auth';
@@ -14,19 +15,18 @@ import offerRouter from './routes/offer';
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(
-  cookieSession({
-    name: 'linkedIn-auth-session',
-    keys: [process.env.SESSION_SECRET || '']
-  })
+  // cookieSession({
+  //   name: 'linkedIn-auth-session',
+  //   keys: [process.env.SESSION_SECRET || '', 'key2'],
+  // })
+  session({ secret: process.env.SESSION_SECRET || '', resave: false, saveUninitialized: false })
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
-
 
 app.use('/auth', authRoutes);
 app.use('/api/app', applicationRouter);
