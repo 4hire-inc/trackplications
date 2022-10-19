@@ -12,8 +12,8 @@ function AddAppDisplay (props: AppsListProps) {
     location: '',
     position: '',
     notes: '',
-    status_id: '',
-    statis: ''
+    status_name: '',
+    status_rank: ''
   };
   // create an array of form input components from the empty activeApp object in props.
   const listAttributes: React.ReactElement[] = [];
@@ -23,7 +23,7 @@ function AddAppDisplay (props: AppsListProps) {
     'position',
     'notes',
   ];
-  const statuses = {
+  const statuses: {[key: string] : string} = {
     1: 'Offer Accepted',
     2: 'Negotiating',
     3: 'Offer Received',
@@ -33,7 +33,6 @@ function AddAppDisplay (props: AppsListProps) {
     7: 'Offer Declined',
     8: 'Rejected',
     9: 'No Response'
-
   };
   fields.forEach(
     (name, i:number) => {
