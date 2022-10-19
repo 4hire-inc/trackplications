@@ -26,14 +26,14 @@
 }
 .heading-row {
   display: grid;
-  grid-template-columns: 5fr 3fr 2fr 1fr 1fr;
+  grid-template-columns: 4fr 2fr 2fr 1fr 1fr;
   justify-items: start;
   border-bottom: 1px solid $secondary;
   padding: 0.5rem;
 }
 .content-row {
   display: grid;
-  grid-template-columns: 5fr 3fr 2fr 1fr 1fr;
+  grid-template-columns: 4fr 2fr 2fr 1fr 1fr;
   justify-content: start;
   align-items: center;
   padding: 0.5rem;

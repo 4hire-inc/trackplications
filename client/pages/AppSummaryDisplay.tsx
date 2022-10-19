@@ -9,7 +9,7 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
   const navigate = useNavigate();
   const appsArray: JSX.Element[] = [];
   props.appsList.forEach((appInfo:ActiveApp, i:number) => {
-    appsArray.push(<ApplicationListItem key={i} appInfo={appInfo} setActiveApp={props.setActiveApp} />);
+    appsArray.push(<ApplicationListItem key={i} appInfo={appInfo} setActiveApp={props.setActiveApp} appsList={props.appsList} updateAppsList={props.updateAppsList}/>);
   });
 
   const fetchApplications = () => {
@@ -20,7 +20,7 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
 
   const updateAppsArray = (appsList: AppsList) => {
     appsList.forEach((appInfo:ActiveApp, i:number) => {
-      appsArray.push(<ApplicationListItem key={i} appInfo={appInfo} setActiveApp={props.setActiveApp} />);
+      appsArray.push(<ApplicationListItem key={i} appInfo={appInfo} setActiveApp={props.setActiveApp} appsList={props.appsList} updateAppsList={props.updateAppsList} />);
     });
   };
 
