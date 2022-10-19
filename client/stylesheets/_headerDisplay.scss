@@ -1,50 +1,45 @@
 // styling for "./components/HeaderDisplay.tsx"
 .nav {
-  background-color: steelblue;
-  overflow: hidden;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
-  position: fixed;
-  top: 0;
+  height: 55px;
   width: 100%;
-  z-index: 10;
-  color: white;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
-    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  background-color: $background-color;
+  color: $text-primary;
+  border-bottom: 1px solid $shadow;
+  box-shadow: $shadow 0px 0px 1px 1px;
+  // overflow: hidden;
 }
-
-.navname {
-  color: white;
-  font-size: 26px;
-}
-
 .navleft {
-  margin-left: 20px;
+  margin-left: 2rem;
 }
-
 .navright {
-  margin-right: 20px;
+  display: flex;
+  gap: 1rem;
+  margin-right: 2rem;
+  align-items: center;
 }
-
+.center {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
 a:link {
   text-decoration: none;
 }
-
-.linkedin-login {
-  margin-left: 20px;
-  background: none;
-	border: 1px solid #0a66c2;
-  border-radius: 5px;
-	padding: 0;
-  cursor:pointer;
-}
-
-.linkedin-login:hover {
-	border: 1px solid navy;
-}
-
 .logout-button {
-  margin-left: 20px;
+  font-size: 0.9rem;
+  background-color: transparent;
+  color: $text-secondary;
+  border: none;
+  border-radius: 0.2rem;
+  margin-left: 1rem;
+}
+.logout-button:hover,
+.logout-button:active {
+  color: $highlight;
 }

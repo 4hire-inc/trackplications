@@ -58,9 +58,14 @@ function EditAppDisplay (props: (EditAppProps)) {
       
       <form onSubmit={handleSubmit}>
         <div className="editAppButtonContainer">
-          <button onClick={() => navigate('/appdetail')}>Back</button>
+          <button 
+            className="back-button" 
+            onClick={() => navigate('/appdetail')}
+          >
+            &#171;
+          </button>
           <h2>Edit {appTitle}</h2>
-          <button type="submit">Done</button>
+          <button className="done-button" type="submit">&#10003;</button>
         </div>
         <ul className="editAppAttributesContainer">
           {listAttributes}
