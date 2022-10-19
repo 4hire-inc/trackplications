@@ -69,6 +69,7 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
           <span className='table-heading'>Position</span>
           <span className='table-heading'>Location</span>
           <span className='table-heading'>Status</span>
+          <span className='table-heading'>Delete App</span>
         </div>
         {appsArray.length < 1 ? <div className="content-row">{'You don\'t have any applications.'}</div> : appsArray}
 

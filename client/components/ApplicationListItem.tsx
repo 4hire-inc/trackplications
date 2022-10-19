@@ -20,6 +20,7 @@ const ApplicationListItem = (props: ApplicationListItemType) => {
       <span className='table-item'>{position}</span>
       <span className='table-item'>{location}</span>
       <span className='table-item'>{status_name}</span>
+      <span className='table-item'>Delete App</span>
     </div>
   );
 };
