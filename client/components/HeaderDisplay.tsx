@@ -41,13 +41,7 @@ const HeaderDisplay = (props: (HeaderProps)) => {
           </div>
         ) : (
           <div className="center">
-              Welcome, Guest!
-            <a href="/auth/linkedin">
-              <img className='linkedin-login'
-                src='/assets/loginicon.png'
-                height='30'
-                alt='Trackplications Logo' />
-            </a>
+              Welcome!
           </div>
         )}
       </div>

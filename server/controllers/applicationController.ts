@@ -22,7 +22,6 @@ const applicationController: ApplicationController = {
       const params = [id];
       applicationModel.query(queryString, params, (err, result) => {
         if (err) return next({ err });
-        // console.log('result:', result?.rows);
         res.locals.applications = result?.rows;
         return next();
       });  

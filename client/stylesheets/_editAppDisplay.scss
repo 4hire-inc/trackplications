@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 1px solid black;
   gap: 1rem;
   form {
     padding: 0;
@@ -11,20 +10,24 @@
 }
 .editAppButtonContainer {
   display: flex;
-  width: 100%;
   justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  background-color: $primary;
+  h2 {
+    color: $background-color;
+  }
 }
-
 .editAppAttributesContainer {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 1rem;
   padding: 0.5rem 1rem;
 }
-
-
 .editFormInputContainer {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 5fr;
   align-items: baseline;
   gap: 1rem;
   

@@ -33,7 +33,7 @@ function AddAppDisplay (props: AppsListProps) {
     }
   );
 
-  const handleSubmit = async (e: Event) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(newApp);
     const response = await axios.post('/api/app', newApp);
@@ -43,11 +43,16 @@ function AddAppDisplay (props: AppsListProps) {
 
   return (
     <div className="editAppContainer">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className="editAppButtonContainer">
-          <button onClick={() => navigate('/summary')}>Back</button>
+          <button 
+            className="back-button" 
+            onClick={() => navigate('/summary')}
+          >
+            &#171;
+          </button>
           <h2>{appTitle}</h2>
-          <button type="submit">Done</button>
+          <button className="done-button" type="submit">&#10003;</button>
         </div>
         <ul className="editAppAttributesContainer">
           {listAttributes}
