@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import type { AppsListProps, AppAttributeType, FieldsType } from '../types';
+import type { AppsListProps } from '../types';
 
 function AddAppDisplay (props: AppsListProps) {
   const navigate = useNavigate();
