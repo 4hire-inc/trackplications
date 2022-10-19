@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "test": "jest --verbose",
+    "test": "jest",
     "build": "NODE_ENV=production webpack",
     "start": "NODE_ENV=production npx ts-node server/server.ts",
     "dev": "NODE_ENV=development webpack-dev-server & NODE_ENV=development nodemon server/server.ts",
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/4hire-inc/trackplications#readme",
   "devDependencies": {
     "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/cookie-parser": "^1.4.3",
     "@types/express-session": "^1.17.5",
     "@types/passport-linkedin-oauth2": "^1.5.3",
