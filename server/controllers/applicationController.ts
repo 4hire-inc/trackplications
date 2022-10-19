@@ -6,6 +6,7 @@ const applicationController: ApplicationController = {
   getApplications: async (req: any, res, next) => {
     try {
       const id = req.user?.id;
+      console.log('id', id);
       const queryString = `
       SELECT a.id AS app_id, a.company, a.location, a.position, a.notes, u.userID, a.modified_at, s.status_name, s.status_rank, s.created_at AS status_created_at, s.modified_at AS status_modified_at, s.id AS status_id
           FROM applications AS a
@@ -32,7 +33,7 @@ const applicationController: ApplicationController = {
   // add application information and corresponding status
   addApplication: (req: any, res, next) => {
     const userId = req.user?.id;
-
+    console.log('userid', userId);
     const { company, location, position, notes, status_name, status_rank } = req.body;
     const addApplicationQuery = 'INSERT INTO applications (company, location, position, notes, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING id';
 
