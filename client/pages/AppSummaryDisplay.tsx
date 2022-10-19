@@ -13,9 +13,7 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
   });
 
   const fetchApplications = () => {
-    console.log('in fetch applications');
     axios.get('/api/app').then((res) => {
-      console.log('res.data', res.data);
       props.updateAppsList(res.data);
     });
   };

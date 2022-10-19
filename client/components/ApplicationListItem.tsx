@@ -18,7 +18,6 @@ const ApplicationListItem = (props: ApplicationListItemType) => {
   };
 
   const handleDelete = async () => {
-    console.log(app_id);
     const response = axios.delete(`/api/app/${app_id}`);
     if ((await response).data.confirmation) {
       const appListIndex = localAppsList.indexOf(
