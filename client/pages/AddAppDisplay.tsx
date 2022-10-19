@@ -38,7 +38,8 @@ function AddAppDisplay (props: AppsListProps) {
     (name, i:number) => {
       listAttributes.push(
         <form key={i} className="editFormInputContainer">
-          <label htmlFor={name}>{name}:</label>
+          <label htmlFor={name}>{name[0].toUpperCase()+name.slice(1)}
+          {name !== 'notes' ? <span className="req">*</span> : ''}:</label>
           <input 
             key={i} 
             id={name} 
