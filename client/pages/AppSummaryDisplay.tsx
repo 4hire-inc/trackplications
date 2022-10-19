@@ -30,7 +30,7 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
     }
 
     props.setActiveApp({
-      id: '',
+      app_id: '',
       user_id: '',
       company: '',
       location: '',

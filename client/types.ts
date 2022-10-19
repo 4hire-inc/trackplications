@@ -16,7 +16,7 @@ export type AuthProps ={
 }
 
 export type ActiveApp = {
-	id: string;
+	app_id: string;
 	user_id: string;
 	company: string;
 	location: string;
