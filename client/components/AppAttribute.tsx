@@ -8,7 +8,7 @@ const AppAttribute = (props: AppAttributeProps) => {
   return (
     <li className='appAttributeWrapper'>
       <h4>{type}:</h4>
-      <p>{value}</p>
+      <div style={{whiteSpace: 'pre-line'}}>{value}</div>
     </li>
   );
 };
