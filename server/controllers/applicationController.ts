@@ -7,10 +7,7 @@ const applicationController: ApplicationController = {
 // middleware to get all applications
   getApplications: async (req: any, res, next) => {
     try {
-      console.log(req.cookies);
-      console.log(req.user);
       const id = req.user?.id;
-      console.log(id);
       const queryString = `
       SELECT a.id, a.company, a.location, a.position, a.notes, u.userID, a.modified_at, o.salary, o.sign_on_bonus, o.start_date, o.notes as offer_notes, o.id as offer_id,  o.created_at as offer_created_at, o.modified_at as offer_modified_at,s.status_name, s.status_rank, s.created_at AS status_created_at, s.modified_at AS status_modified_at, s.id AS status_id
           FROM applications AS a
@@ -25,7 +22,6 @@ const applicationController: ApplicationController = {
       const params = [id];
       applicationModel.query(queryString, params, (err, result) => {
         if (err) return next({ err });
-        console.log('result:', result?.rows);
         res.locals.applications = result?.rows;
         return next();
       });  
