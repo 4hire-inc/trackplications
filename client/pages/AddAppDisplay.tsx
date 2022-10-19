@@ -24,11 +24,16 @@ function AddAppDisplay (props: AppsListProps) {
     'notes',
   ];
   const statuses = {
-    '1': 'Application Sent',
-    '2': 'Online Assessment',
-    '3': 'Phone Interview',
-    '4': 'Onsite Interview',
-    '5': 'Offer Received'
+    1: 'Offer Accepted',
+    2: 'Negotiating',
+    3: 'Offer Received',
+    4: 'Interviews Done',
+    5: 'Interviewing',
+    6: 'Application Sent',
+    7: 'Offer Declined',
+    8: 'Rejected',
+    9: 'No Response'
+
   };
   fields.forEach(
     (name, i:number) => {
@@ -79,11 +84,15 @@ function AddAppDisplay (props: AppsListProps) {
               }
             } name="status" id="status">
               <option value="">Please choose an option</option>
-              <option value="1">Application Sent</option>
-              <option value="2">Online Assessment</option>
-              <option value="3">Phone Interview</option>
-              <option value="4">Onsite Interview</option>
-              <option value="5">Offer Received</option>
+              <option value="1">Offer Accepted</option>
+              <option value="2">Negotiating</option>
+              <option value="3">Offer Received</option>
+              <option value="4">Interviews Done</option>
+              <option value="5">Interviewing</option>
+              <option value="6">Application Sent</option>
+              <option value="7">Offer Declined</option>
+              <option value="8">Rejected</option>
+              <option value="9">No Response</option>
             </select></li>
         </ul>
         
