@@ -14,8 +14,6 @@ function EditAppDisplay (props: (EditAppProps)) {
   const listAttributes: React.ReactElement[] = [];
   attributes.forEach(
     ([name, value], i:number) => {
-      
-      // if (name === 'id') name = 'app_id';
       listAttributes.push(
         <li key={i} className="editFormInputContainer">
           <label htmlFor={name}>{name}:</label>
@@ -39,15 +37,11 @@ function EditAppDisplay (props: (EditAppProps)) {
     props.setActiveApp(localActiveApp);
     // ! this should be replaced when the patch route is complete
     localAppsList[appListIndex] = localActiveApp;
-    console.log('localActiveApp: ', localActiveApp);
     props.updateAppsList(localAppsList);
-    // console.log('local app list: ', localAppsList);
     // ! this should replace the above logic when the patch route is complete
     axios.patch('/api/app', localActiveApp).then((res) => {
-      console.log('res data', res.data);
       localAppsList[appListIndex] = res.data;
       props.updateAppsList(localAppsList);
-      console.log('localAppsList: ', localAppsList);
     });
 
     navigate('/appdetail');
