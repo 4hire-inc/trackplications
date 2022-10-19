@@ -8,15 +8,14 @@ const applicationController: ApplicationController = {
   getApplications: async (req: any, res, next) => {
     try {
       const id = req.user?.id;
+      console.log('id', id);
       const queryString = `
-      SELECT a.id, a.company, a.location, a.position, a.notes, u.userID, a.modified_at, o.salary, o.sign_on_bonus, o.start_date, o.notes as offer_notes, o.id as offer_id,  o.created_at as offer_created_at, o.modified_at as offer_modified_at,s.status_name, s.status_rank, s.created_at AS status_created_at, s.modified_at AS status_modified_at, s.id AS status_id
+      SELECT a.id, a.company, a.location, a.position, a.notes, u.userID, a.modified_at, s.status_name, s.status_rank, s.created_at AS status_created_at, s.modified_at AS status_modified_at, s.id AS status_id
           FROM applications AS a
           INNER JOIN users AS u
           ON a.user_id = u.userid
-          INNER JOIN offers AS o
-          ON a.id = o.app_id
           INNER JOIN status AS s
-          ON a.id = o.app_id
+          ON a.id = s.app_id
           WHERE u.userID = ($1)
       `;
       const params = [id];
@@ -36,7 +35,7 @@ const applicationController: ApplicationController = {
   // add application information and corresponding status
   addApplication: (req: any, res, next) => {
     const userId = req.user?.id;
-
+    console.log('userid', userId);
     const { company, location, position, notes, status_name, status_rank } = req.body;
     const addApplicationQuery = 'INSERT INTO applications (company, location, position, notes, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING id';
 
