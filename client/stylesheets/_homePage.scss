@@ -2,27 +2,36 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  background-color: $primary;
 }
 .landing-page-hero {
-  background-color: $primary;
-  color: $background-color;
-  padding: 1rem;
+  color: $background-color;  
+  padding-top: 23rem;
+  padding-left: 15rem;
+  padding-right: 15rem;
+  padding-bottom: 25rem;
+  text-align: center;
+  img {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 .hero-logo {
   display: flex;
-  width: 60%;
-  height: auto;
+  width: 100%;
   justify-self: start;
 }
 .landing-page-login {
-  background-color: $primary;
-  padding: 1rem;
+  // padding: 1rem;
+  text-align: center;
 }
 .linkedin-login {
   border: none;
   text-decoration: none;
 }
 .linkedin-login-img {
+  margin-top: 5rem;
   border: 1px solid $background-color;
   border-radius: 0.5rem;
 }
@@ -33,9 +42,11 @@
   border: 1px solid $background-color;
   box-shadow: inset -1px 1px 0 0 $shadow; 
 }
-.landing-page-content {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 1rem;
-}
+// .landing-page-content {
+//   display: flex;
+//   flex-direction: column;
+//   height: 100%;
+//   padding: 3rem;
+//   width: 60%;
+//   margin: auto;
+// }

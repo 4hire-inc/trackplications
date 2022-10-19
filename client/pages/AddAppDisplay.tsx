@@ -37,9 +37,8 @@ function AddAppDisplay (props: AppsListProps) {
   fields.forEach(
     (name, i:number) => {
       listAttributes.push(
-        <li key={i} className="editFormInputContainer">
-          <label htmlFor={name}>{name[0].toUpperCase()+name.slice(1)}
-          {name !== 'notes' ? <span className="req">*</span> : ''}:</label>
+        <form key={i} className="editFormInputContainer">
+          <label htmlFor={name}>{name}:</label>
           <input 
             key={i} 
             id={name} 
@@ -47,7 +46,7 @@ function AddAppDisplay (props: AppsListProps) {
             defaultValue=''
             onChange={(e) => newApp[name] = e.target.value}
           />
-        </li>
+        </form>
       );
     }
   );
@@ -79,7 +78,7 @@ function AddAppDisplay (props: AppsListProps) {
         </div>
         <ul className="editAppAttributesContainer">
           {listAttributes}
-          <li className="editFormInputContainer">
+          <form className="editFormInputContainer">
             <label htmlFor="status">Status<span className="req">*</span>:</label>
             <select onChange={
               (e) => {
@@ -97,7 +96,7 @@ function AddAppDisplay (props: AppsListProps) {
               <option value="7">Offer Declined</option>
               <option value="8">Rejected</option>
               <option value="9">No Response</option>
-            </select></li>
+            </select></form>
             <li id="error-message"></li>
         </ul>
       </form>

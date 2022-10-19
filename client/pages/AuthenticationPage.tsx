@@ -41,8 +41,8 @@ const AuthenticationPage = (props: AuthProps) => {
   }
 
   return (
-    <div className="center">
-      <h4>Successfully logged in with Linkedin. Redirecting you in {timer} seconds...</h4>
+    <div className="logintext">
+      <h1 style={{ textAlign: 'center' }}>Successfully logged in with Linkedin. Redirecting you in {timer} seconds...</h1>
     </div>
   );
 };
