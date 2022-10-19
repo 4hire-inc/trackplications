@@ -1,6 +1,6 @@
 .app-summary-heading {
   display: flex;
-  align-items: center;
+  // align-items: center;
   justify-content: space-between;
   padding: 1rem;
   background-color: $primary;
@@ -16,6 +16,7 @@
   grid-auto-rows: minmax(1.5rem, auto);
   justify-content: start;
   align-items: stretch;
+  
   width: 100%;
   height: 100%;
 }
@@ -23,20 +24,26 @@
   font-size: 1rem;
   font-weight: 500;
   color: $primary;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding: 0.5rem 0;
+  
 }
 .heading-row {
   display: grid;
-  grid-template-columns: 4fr 3fr 2fr 1fr;
+  grid-template-columns: 5fr 4fr 3fr 3fr 1fr;
   justify-items: start;
+  align-items: center;
   border-bottom: 1px solid $secondary;
-  padding: 0.5rem;
+  padding: 0 2rem;
 }
+
 .content-row {
   display: grid;
-  grid-template-columns: 4fr 3fr 2fr 1fr;
+  grid-template-columns: 5fr 4fr 3fr 3fr 1fr;
   justify-content: start;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0 2rem;
   // border-bottom: 1px solid $shadow;
   color: $text-secondary;
 }
@@ -45,4 +52,26 @@
 }
 .content-row:active {
   box-shadow: inset 1px 1px 1px 0px $shadow;
+}
+
+.app-info {
+  display: grid;
+  grid-template-columns: 5fr 4fr 3fr 3fr 1fr;
+  justify-content: start;
+  align-items: center;
+  padding: 0.5rem;
+  // border-bottom: 1px solid $shadow;
+  color: $text-secondary;
+}
+
+.app-info:hover {
+  color: $text-primary
+}
+
+.app-info:active {
+  box-shadow: inset 1px 1px 1px 0px $shadow;
+}
+
+.delete-app {
+  cursor: pointer;
 }

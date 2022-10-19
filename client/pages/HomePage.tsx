@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import LoginButton from '../components/LoginButton';
 
 
 const HomePage = () => {
@@ -21,12 +22,9 @@ const HomePage = () => {
           alt='Trackplications'
         />
         <p>Stay motivated by tracking your progress during your job search.</p>
-        <a href="/auth/linkedin" className='linkedin-login'>
-          <img className='linkedin-login-img'
-            src='/assets/loginicon.png'
-            height='50'
-            alt='Trackplications Logo' />
-        </a>
+        <section className='landing-page-login'>
+          <LoginButton />
+        </section>
       </section>
     </article>
   );

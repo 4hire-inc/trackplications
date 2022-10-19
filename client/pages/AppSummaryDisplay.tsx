@@ -9,7 +9,7 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
   const navigate = useNavigate();
   const appsArray: JSX.Element[] = [];
   props.appsList.forEach((appInfo:ActiveApp, i:number) => {
-    appsArray.push(<ApplicationListItem key={i} appInfo={appInfo} setActiveApp={props.setActiveApp} />);
+    appsArray.push(<ApplicationListItem key={i} appInfo={appInfo} setActiveApp={props.setActiveApp} appsList={props.appsList} updateAppsList={props.updateAppsList}/>);
   });
 
   const fetchApplications = () => {
@@ -20,7 +20,7 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
 
   const updateAppsArray = (appsList: AppsList) => {
     appsList.forEach((appInfo:ActiveApp, i:number) => {
-      appsArray.push(<ApplicationListItem key={i} appInfo={appInfo} setActiveApp={props.setActiveApp} />);
+      appsArray.push(<ApplicationListItem key={i} appInfo={appInfo} setActiveApp={props.setActiveApp} appsList={props.appsList} updateAppsList={props.updateAppsList} />);
     });
   };
 
@@ -30,7 +30,7 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
     }
 
     props.setActiveApp({
-      id: '',
+      app_id: '',
       user_id: '',
       company: '',
       location: '',
@@ -62,19 +62,15 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
           {'+'}
         </button>
       </div>
-      <div className='table-container'>
-
-        <div className='heading-row'>
-          <span className='table-heading'>Company</span>
-          <span className='table-heading'>Position</span>
-          <span className='table-heading'>Location</span>
-          <span className='table-heading'>Status</span>
-        </div>
-        {appsArray.length < 1 ? <div className="content-row">{'You don\'t have any applications.'}</div> : appsArray}
-
+      <div className='heading-row'>
+          <p className='table-heading'>Company</p>
+          <p className='table-heading'>Position</p>
+          <p className='table-heading'>Location</p>
+          <p className='table-heading'>Status</p>
+          <p className='table-heading'> </p>
       </div>
+      {appsArray.length < 1 ? <div className="content-row">{'You don\'t have any applications.'}</div> : appsArray}
     </React.Fragment>
-    
   );
 };
 

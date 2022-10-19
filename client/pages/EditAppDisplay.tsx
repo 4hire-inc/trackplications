@@ -2,18 +2,35 @@ import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import type { EditAppProps, AppAttributeType, ActiveApp } from '../types';
+import { activeAppMock } from 'client/mockData';
 
 function EditAppDisplay (props: (EditAppProps)) {
   const navigate = useNavigate();
   const appTitle = `${props.activeApp.company}: ${props.activeApp.position}`;
-  const localActiveApp = JSON.parse(JSON.stringify(props.activeApp));
+  const localActiveApp:ActiveApp = JSON.parse(JSON.stringify(props.activeApp));
   const localAppsList = JSON.parse(JSON.stringify(props.appsList));
-
   // create an array of form input components from the activeApp object in props.
-  const attributes: AppAttributeType[] = Object.entries(props.activeApp);
+  // const attributes: AppAttributeType[] = Object.entries(props.activeApp);
   const listAttributes: React.ReactElement[] = [];
-  attributes.forEach(
-    ([name, value], i:number) => {
+  const fields: string[] = [
+    'company',
+    'location',
+    'position',
+    'notes',
+  ];
+  const statuses: {[key: string] : string} = {
+    1: 'Offer Accepted',
+    2: 'Negotiating',
+    3: 'Offer Received',
+    4: 'Interviews Done',
+    5: 'Interviewing',
+    6: 'Application Sent',
+    7: 'Offer Declined',
+    8: 'Rejected',
+    9: 'No Response'
+  };
+  fields.forEach(
+    (name, i:number) => {
       listAttributes.push(
         <form key={i} className="editFormInputContainer">
           <label htmlFor={name}>{name}:</label>
@@ -21,8 +38,9 @@ function EditAppDisplay (props: (EditAppProps)) {
             key={i} 
             id={name} 
             name={name} 
-            defaultValue={value} 
-            onChange={(e) => localActiveApp[name] = e.target.value}
+            defaultValue={props.activeApp[name]} 
+            onChange={(e) => localActiveApp[name] = e.target.value
+            }
           />
         </form>
       );
@@ -32,17 +50,17 @@ function EditAppDisplay (props: (EditAppProps)) {
   // updates the AppList and ActiveApp state objects, and pushes AppList to the DB.
   const handleSubmit = () => {
     const appListIndex = localAppsList.indexOf(
-      localAppsList.find((el: ActiveApp) => el.id === localActiveApp.id)
+      localAppsList.find((el: ActiveApp) => el.app_id === localActiveApp.app_id)
     );
     props.setActiveApp(localActiveApp);
     // ! this should be replaced when the patch route is complete
     localAppsList[appListIndex] = localActiveApp;
     props.updateAppsList(localAppsList);
     // ! this should replace the above logic when the patch route is complete
-    // axios.patch('/api/app', localAppsList).then((res) => {
-    //   console.log('res data', res.data);
-    //   props.updateAppsList(res.data);
-    // });
+    axios.patch('/api/app', localActiveApp).then((res) => {
+      localAppsList[appListIndex] = res.data;
+      props.updateAppsList(localAppsList);
+    });
 
     navigate('/appdetail');
   };
@@ -63,6 +81,25 @@ function EditAppDisplay (props: (EditAppProps)) {
         </div>
         <ul className="editAppAttributesContainer">
           {listAttributes}
+          <li className="editFormInputContainer">
+            <label htmlFor="status">Status:</label>
+            <select onChange={
+              (e) => {
+                localActiveApp.status_rank = e.target.value;
+                localActiveApp.status_name = statuses[e.target.value];
+              }
+            } name="status" id="status" defaultValue={localActiveApp.status_rank}>
+              <option value="">Please choose an option</option>
+              <option value="1">Offer Accepted</option>
+              <option value="2">Negotiating</option>
+              <option value="3">Offer Received</option>
+              <option value="4">Interviews Done</option>
+              <option value="5">Interviewing</option>
+              <option value="6">Application Sent</option>
+              <option value="7">Offer Declined</option>
+              <option value="8">Rejected</option>
+              <option value="9">No Response</option>
+            </select></li>
         </ul>
       </form>
     </div>
