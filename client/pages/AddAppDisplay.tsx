@@ -35,7 +35,7 @@ function AddAppDisplay (props: AppsListProps) {
     }
   );
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: Event) => {
     e.preventDefault();
     console.log(newApp);
     const response = await axios.post('/api/app', newApp);
