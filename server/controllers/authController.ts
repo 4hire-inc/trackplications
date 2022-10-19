@@ -22,7 +22,7 @@ type DoneType = (err: Error | null, user: Express.User) => void
 const linkedInSettings: linkedInSettingsType = {
   clientID: process.env.CLIENT_ID || '',
   clientSecret: process.env.CLIENT_SECRET || '',
-  callbackURL: 'https://trackplications.herokuapp.com/auth/linkedin/callback',
+  callbackURL: 'https://trackplications.com/auth/linkedin/callback',
   scope:['r_emailaddress', 'r_liteprofile'],
 };
 
