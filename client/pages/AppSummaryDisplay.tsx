@@ -62,18 +62,16 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
           {'+'}
         </button>
       </div>
-      <div className='table-container'>
-
-        <div className='heading-row'>
+      <div className='heading-row'>
+        <div className='app-info-row'>
           <span className='table-heading'>Company</span>
           <span className='table-heading'>Position</span>
           <span className='table-heading'>Location</span>
           <span className='table-heading'>Status</span>
-          <span className='table-heading'>Delete App</span>
         </div>
-        {appsArray.length < 1 ? <div className="content-row">{'You don\'t have any applications.'}</div> : appsArray}
-
+        <div className='table-heading'>Delete App</div>
       </div>
+      {appsArray.length < 1 ? <div className="content-row">{'You don\'t have any applications.'}</div> : appsArray}
     </React.Fragment>
     
   );

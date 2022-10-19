@@ -30,13 +30,15 @@ const ApplicationListItem = (props: ApplicationListItemType) => {
   };
   
   return (
-    <div className='content-row' onClick={() => handleClick()}>
-      <span className='table-item'>{company}</span>
-      <span className='table-item'>{position}</span>
-      <span className='table-item'>{location}</span>
-      <span className='table-item'>{status_name}</span>
-      <span className='table-item'><a className='delete-app' onClick={handleDelete}>Delete App</a></span>
-    </div>
+    <span className='content-row'>
+      <div className='app-info' onClick={() => handleClick()}>
+        <span className='table-item'>{company}</span>
+        <span className='table-item'>{position}</span>
+        <span className='table-item'>{location}</span>
+        <span className='table-item'>{status_name}</span>
+      </div>
+      <div className='delete-button'><a className='delete-app' onClick={handleDelete}>Delete App</a></div>
+    </span>
   );
 };
 
