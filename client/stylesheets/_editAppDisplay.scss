@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 1px solid black;
   gap: 1rem;
   form {
     padding: 0;
@@ -21,8 +20,6 @@
   gap: 1.1rem;
   padding: 0.5rem 1rem;
 }
-
-
 .editFormInputContainer {
   display: flex;
   align-items: baseline;

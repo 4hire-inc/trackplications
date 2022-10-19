@@ -6,7 +6,7 @@ $font-size: 16px;
 $text-primary: #2D232E;
 $text-secondary: rgb(150,150,150);
 $shadow: rgb(230,230,230);
-$background-color: #f6fbf6;
+$background-color: #fafafa;
 $primary: #017AB6;
 $secondary: #a8dadc;
 $highlight: #D77A61;
@@ -14,36 +14,36 @@ $highlight: #D77A61;
 :root {
   font-size: $font-size;
 }
-
 body {
   font-family: $font-stack;
   color: $text-primary;
   background-color: $background-color;
   min-height: 100vh;
-  margin: 0;
+  margin: 0 auto;
 }
-
 #root {
   min-height: 100vh;
 }
-
+main {
+  padding: 0 1rem;
+}
 .page-container {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: stretch;
+  justify-self: center;
   max-width: 1200px;
   min-height: 80vh;
-  margin: 2rem auto;
   border: 1px solid $primary;
   border-radius: 1rem;
-  // padding: 1rem;
+  margin: 2rem auto;
   overflow: hidden;
   box-shadow: 1px 1px 1px 1px $shadow;
 }
 
-
 // IMPORT COMPONENT CSS FILES HERE (globals override component)
+@import "homePage";
 @import "appDetailDisplay";
 @import "appAttribute";
 @import "editAppDisplay";
