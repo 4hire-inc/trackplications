@@ -125,7 +125,8 @@ const applicationController: ApplicationController = {
   updateApplication: async (req: any, res, next) => {
     const userId = req.user?.id;
     const appId = req.body.appId;
-
+    console.log('appId: ', appId);
+    console.log('userId: ', userId);
     const updateAppOptions = ['company', 'location', 'position', 'notes'];
     const updateAppFields: string[] = [];
     const updateAppValues: string[] = [];
@@ -148,7 +149,6 @@ const applicationController: ApplicationController = {
     });
     if (!updateStatusFields.length) return next();
 
-
     let updateAppInfoQuery = 'UPDATE applications SET ';
     for (let i = 0; i < updateAppFields.length; i++) {
       if (i !== updateAppFields.length - 1) updateAppInfoQuery += `${updateAppFields[i]} = '${updateAppValues[i]}', `;
@@ -158,8 +158,8 @@ const applicationController: ApplicationController = {
     }
 
     let updateStatusInfoQuery = 'UPDATE status SET ';
-    for (let i = 0; i < updateAppFields.length; i++) {
-      if (i !== updateAppFields.length - 1) updateStatusInfoQuery += `${updateStatusFields[i]} = '${updateStatusValues[i]}', `;
+    for (let i = 0; i < updateStatusFields.length; i++) {
+      if (i !== updateStatusFields.length - 1) updateStatusInfoQuery += `${updateStatusFields[i]} = '${updateStatusValues[i]}', `;
       else {
         updateStatusInfoQuery += `${updateStatusFields[i]} = '${updateStatusValues[i]}' WHERE app_id=($1)`;
       }
@@ -189,6 +189,7 @@ const applicationController: ApplicationController = {
                 status: 500,
               });
               else {
+                console.log('response: ', app?.rows[0]);
                 res.locals.appInfo = app?.rows[0];
                 return next();
               }

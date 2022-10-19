@@ -18,7 +18,7 @@ const App = () => {
   });
   const [ appsList, updateAppsList ] = useState([]);
   const [ activeApp, setActiveApp ] = useState({
-    id: '',
+    app_id: '',
     user_id: '',
     company: '',
     location: '',
