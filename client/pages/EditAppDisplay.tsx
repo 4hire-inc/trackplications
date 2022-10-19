@@ -47,9 +47,10 @@ function EditAppDisplay (props: (EditAppProps)) {
 
       else {
         listAttributes.push(
-          <li key={i} className="editFormInputContainer">
+          <form key={i} className="editFormInputContainer">
             <label htmlFor={name}>{name[0].toUpperCase()+name.slice(1)}:</label>
               <textarea
+                rows= "10"
                 key={i} 
                 id={name} 
                 name={name} 
@@ -57,7 +58,7 @@ function EditAppDisplay (props: (EditAppProps)) {
                 onChange={(e) => localActiveApp[name] = e.target.value
                 }
               ></textarea>
-          </li>
+          </form>
         );
       }
     }
@@ -96,7 +97,7 @@ function EditAppDisplay (props: (EditAppProps)) {
         </div>
         <ul className="editAppAttributesContainer">
           {listAttributes}
-          <li className="editFormInputContainer">
+          <form className="editFormInputContainer">
             <label htmlFor="status">Status:</label>
             <select onChange={
               (e) => {
@@ -114,7 +115,7 @@ function EditAppDisplay (props: (EditAppProps)) {
               <option value="7">Offer Declined</option>
               <option value="8">Rejected</option>
               <option value="9">No Response</option>
-            </select></li>
+            </select></form>
         </ul>
       </form>
     </div>
