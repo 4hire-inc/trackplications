@@ -31,9 +31,9 @@ function EditAppDisplay (props: (EditAppProps)) {
   };
   fields.forEach(
     (name, i:number) => {
-      listAttributes.push(
+      if (name !== 'notes') listAttributes.push(
         <form key={i} className="editFormInputContainer">
-          <label htmlFor={name}>{name}:</label>
+          <label htmlFor={name}>{name[0].toUpperCase()+name.slice(1)}:</label>
           <input 
             key={i} 
             id={name} 
@@ -44,6 +44,22 @@ function EditAppDisplay (props: (EditAppProps)) {
           />
         </form>
       );
+
+      else {
+        listAttributes.push(
+          <li key={i} className="editFormInputContainer">
+            <label htmlFor={name}>{name[0].toUpperCase()+name.slice(1)}:</label>
+              <textarea
+                key={i} 
+                id={name} 
+                name={name} 
+                defaultValue={props.activeApp[name]} 
+                onChange={(e) => localActiveApp[name] = e.target.value
+                }
+              ></textarea>
+          </li>
+        );
+      }
     }
   );
 
@@ -53,10 +69,9 @@ function EditAppDisplay (props: (EditAppProps)) {
       localAppsList.find((el: ActiveApp) => el.app_id === localActiveApp.app_id)
     );
     props.setActiveApp(localActiveApp);
-    // ! this should be replaced when the patch route is complete
     localAppsList[appListIndex] = localActiveApp;
     props.updateAppsList(localAppsList);
-    // ! this should replace the above logic when the patch route is complete
+    console.log(localActiveApp);
     axios.patch('/api/app', localActiveApp).then((res) => {
       localAppsList[appListIndex] = res.data;
       props.updateAppsList(localAppsList);

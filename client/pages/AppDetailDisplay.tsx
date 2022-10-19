@@ -9,10 +9,10 @@ function AppDetailDisplay (props: (ActiveAppProps)) {
   // create an array of <AppAttribute /> components from the activeApp object in props.
   const attributes: AppAttributeType[] = Object.entries(props.activeApp);
   const listAttributes: React.ReactElement[] = [];
-
+  const displayAttributes = ['company', 'location', 'position', 'notes', 'status_name']
   attributes.forEach(
     (attribute: AppAttributeType, i:number) => {
-      listAttributes.push(<AppAttribute key={i} appAttribute={attribute} />);
+      if (displayAttributes.includes(attribute[0])) listAttributes.push(<AppAttribute key={i} appAttribute={attribute} />);
     }
   );
   

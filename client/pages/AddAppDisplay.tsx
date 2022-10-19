@@ -53,10 +53,14 @@ function AddAppDisplay (props: AppsListProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('body', newApp);
-    const response = await axios.post('/api/app', newApp);
-    console.log('response', response);
-    navigate('/summary');
+    const errorMessage = document.querySelector('#error-message');
+    if (!newApp.company || !newApp.location || !newApp.position || !newApp.status_rank) {
+      if (errorMessage) errorMessage.innerHTML = 'Error: Please fill out all required fields.';
+    } else {
+      if (errorMessage) errorMessage.innerHTML = '';
+      const response = await axios.post('/api/app', newApp);
+      navigate('/summary');
+    }
   };
 
   return (
@@ -75,7 +79,7 @@ function AddAppDisplay (props: AppsListProps) {
         <ul className="editAppAttributesContainer">
           {listAttributes}
           <li className="editFormInputContainer">
-            <label htmlFor="status">Status:</label>
+            <label htmlFor="status">Status<span className="req">*</span>:</label>
             <select onChange={
               (e) => {
                 newApp.status_rank = e.target.value;
@@ -93,9 +97,8 @@ function AddAppDisplay (props: AppsListProps) {
               <option value="8">Rejected</option>
               <option value="9">No Response</option>
             </select></li>
+            <li id="error-message"></li>
         </ul>
-        
-
       </form>
     </div>
   );
