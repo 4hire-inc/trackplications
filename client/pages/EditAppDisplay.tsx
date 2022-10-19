@@ -14,20 +14,20 @@ function EditAppDisplay (props: (EditAppProps)) {
   const listAttributes: React.ReactElement[] = [];
   attributes.forEach(
     ([name, value], i:number) => {
-      console.log('name: ', name);
-      if (name === 'id')
-        listAttributes.push(
-          <li key={i} className="editFormInputContainer">
-            <label htmlFor={name}>{name}:</label>
-            <input 
-              key={i} 
-              id={name} 
-              name={name} 
-              defaultValue={value} 
-              onChange={(e) => localActiveApp[name] = e.target.value}
-            />
-          </li>
-        );
+      
+      // if (name === 'id') name = 'app_id';
+      listAttributes.push(
+        <li key={i} className="editFormInputContainer">
+          <label htmlFor={name}>{name}:</label>
+          <input 
+            key={i} 
+            id={name} 
+            name={name} 
+            defaultValue={value} 
+            onChange={(e) => localActiveApp[name] = e.target.value}
+          />
+        </li>
+      );
     }
   );
 
