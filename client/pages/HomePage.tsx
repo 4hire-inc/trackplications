@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import LoginButton from '../components/LoginButton';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -22,12 +23,7 @@ const HomePage = () => {
         <p>Stay motivated by tracking your progress during your job search.</p>
       </section>
       <section className='landing-page-login'>
-        <a href="/auth/linkedin" className='linkedin-login'>
-          <img className='linkedin-login-img'
-            src='/assets/loginicon.png'
-            height='50'
-            alt='Trackplications Logo' />
-        </a>
+        <LoginButton />
       </section>
       <section className="landing-page-content">
         <p> Its as simple as using a spreadsheet, but with a just enough structure 
