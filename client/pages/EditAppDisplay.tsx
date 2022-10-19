@@ -32,17 +32,17 @@ function EditAppDisplay (props: (EditAppProps)) {
   // updates the AppList and ActiveApp state objects, and pushes AppList to the DB.
   const handleSubmit = () => {
     const appListIndex = localAppsList.indexOf(
-      localAppsList.find((el: ActiveApp) => el.id === localActiveApp.id)
+      localAppsList.find((el: ActiveApp) => el.app_id === localActiveApp.app_id)
     );
     props.setActiveApp(localActiveApp);
     // ! this should be replaced when the patch route is complete
     localAppsList[appListIndex] = localActiveApp;
     props.updateAppsList(localAppsList);
     // ! this should replace the above logic when the patch route is complete
-    // axios.patch('/api/app', localAppsList).then((res) => {
-    //   console.log('res data', res.data);
-    //   props.updateAppsList(res.data);
-    // });
+    axios.patch('/api/app', localActiveApp).then((res) => {
+      localAppsList[appListIndex] = res.data;
+      props.updateAppsList(localAppsList);
+    });
 
     navigate('/appdetail');
   };
@@ -52,9 +52,14 @@ function EditAppDisplay (props: (EditAppProps)) {
       
       <form onSubmit={handleSubmit}>
         <div className="editAppButtonContainer">
-          <button onClick={() => navigate('/appdetail')}>Back</button>
+          <button 
+            className="back-button" 
+            onClick={() => navigate('/appdetail')}
+          >
+            &#171;
+          </button>
           <h2>Edit {appTitle}</h2>
-          <button type="submit">Done</button>
+          <button className="done-button" type="submit">&#10003;</button>
         </div>
         <ul className="editAppAttributesContainer">
           {listAttributes}

@@ -18,7 +18,7 @@ const App = () => {
   });
   const [ appsList, updateAppsList ] = useState([]);
   const [ activeApp, setActiveApp ] = useState({
-    id: '',
+    app_id: '',
     user_id: '',
     company: '',
     location: '',
@@ -34,17 +34,19 @@ const App = () => {
   return(
     <React.Fragment>
       <HeaderDisplay userInfo={userInfo} />
-      <div className="page-container">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/summary" element={<AppSummaryDisplay appsList={appsList} updateAppsList={updateAppsList} setActiveApp={setActiveApp} />} />
-          <Route path="/appdetail" element={<AppDetailDisplay activeApp={activeApp} />} />
-          <Route path='/addapp' element={<AddAppDisplay appsList={appsList} activeApp={activeApp} updateAppsList={updateAppsList} />} />
-          <Route path='/editapp' element={<EditAppDisplay activeApp={activeApp} setActiveApp={setActiveApp} appsList={appsList} updateAppsList={updateAppsList}/>} />
-          <Route path='/authenticate' element={<AuthenticationPage updateUserInfo={updateUserInfo}/>} />
-          <Route path='/*' element={<NotFound />} />
-        </Routes>
-      </div>
+      <main>
+        <div className="page-container">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/summary" element={<AppSummaryDisplay appsList={appsList} updateAppsList={updateAppsList} setActiveApp={setActiveApp} />} />
+            <Route path="/appdetail" element={<AppDetailDisplay activeApp={activeApp} />} />
+            <Route path='/addapp' element={<AddAppDisplay appsList={appsList} activeApp={activeApp} updateAppsList={updateAppsList} />} />
+            <Route path='/editapp' element={<EditAppDisplay activeApp={activeApp} setActiveApp={setActiveApp} appsList={appsList} updateAppsList={updateAppsList}/>} />
+            <Route path='/authenticate' element={<AuthenticationPage updateUserInfo={updateUserInfo}/>} />
+            <Route path='/*' element={<NotFound />} />
+          </Routes>
+        </div>
+      </main>
     </React.Fragment>
   );
 };

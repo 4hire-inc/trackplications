@@ -38,7 +38,6 @@ const offerController: OfferController = {
 
   //middleware to add an offer
   postOffer: async (req, res, next) => {
-    console.log('req.body:', req.body);
     try {
       const { salary, sign_on_bonus, start_date, notes } = req.body;
       const queryString = `

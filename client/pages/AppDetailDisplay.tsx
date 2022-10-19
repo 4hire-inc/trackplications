@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BackButton from '../components/BackButton';
-import EditButton from '../components/EditButton';
 import AppAttribute from '../components/AppAttribute';
 import type { ActiveAppProps, AppAttributeType } from '../types';
 
@@ -27,9 +25,19 @@ function AppDetailDisplay (props: (ActiveAppProps)) {
   return (
     <div className="appDetailContainer">
       <div className="appDetailButtonContainer">
-        <BackButton />
+        <button 
+          className="back-button" 
+          onClick={() => navigate('/summary')}
+        >
+          &#128281;
+        </button>
         <h2>{appTitle}</h2>
-        <EditButton />
+        <button 
+          className="edit-button" 
+          onClick={() => navigate('/editapp')}
+        >
+          &#128393;
+        </button>
       </div>
       <ul className='appDetailAttributesContainer'>
         {listAttributes}
