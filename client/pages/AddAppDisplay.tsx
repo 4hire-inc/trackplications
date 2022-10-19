@@ -15,8 +15,6 @@ function AddAppDisplay (props: AppsListProps) {
     'location',
     'position',
     'notes',
-    'status_name',
-    'status_rank'
   ];
   fields.forEach(
     (name, i:number) => {
@@ -54,6 +52,16 @@ function AddAppDisplay (props: AppsListProps) {
         <ul className="editAppAttributesContainer">
           {listAttributes}
         </ul>
+        <label htmlFor="status">status:</label>
+        <select onChange={(e) => newApp.status = e.target.value} name="status" id="status">
+          <option value="">Please choose an option</option>
+          <option value="1">Application Sent</option>
+          <option value="2">Online Assessment</option>
+          <option value="3">Phone Interview</option>
+          <option value="4">Onsite Interview</option>
+          <option value="5">Offer Received</option>
+        </select>
+
       </form>
     </div>
   );
