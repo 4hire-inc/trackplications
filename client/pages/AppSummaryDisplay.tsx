@@ -71,7 +71,6 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
       </div>
       {appsArray.length < 1 ? <div className="content-row">{'You don\'t have any applications.'}</div> : appsArray}
     </React.Fragment>
-    
   );
 };
 
