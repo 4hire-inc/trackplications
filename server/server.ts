@@ -4,6 +4,7 @@ import path from 'path';
 import passport from 'passport';
 
 import cookieSession from 'cookie-session';
+import cookieParser from 'cookie-parser';
 import session from 'express-session';
 
 import { GlobalError } from './serverTypes';
@@ -16,12 +17,14 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+
 
 app.use(
   // cookieSession({
   //   name: 'linkedIn-auth-session',
-  //   keys: [process.env.SESSION_SECRET || '', 'key2'],
+  //   secret: process.env.SESSION_SECRET || '',
   // })
   session({ secret: process.env.SESSION_SECRET || '', resave: false, saveUninitialized: false })
 );

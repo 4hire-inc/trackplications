@@ -7,6 +7,7 @@ const applicationController: ApplicationController = {
 // middleware to get all applications
   getApplications: async (req: any, res, next) => {
     try {
+      console.log(req.cookies);
       console.log(req.user);
       const id = req.user?.id;
       console.log(id);

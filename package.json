@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/4hire-inc/trackplications#readme",
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.3",
     "@types/express-session": "^1.17.5",
     "@types/passport-linkedin-oauth2": "^1.5.3",
     "@types/pg": "^8.6.5",

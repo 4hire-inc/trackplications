@@ -5,7 +5,7 @@ import { authController } from '../controllers/authController';
 const router = express.Router();
 
 // Get Request: route to send back all application info
-router.get('/', authController.isLoggedIn, applicationController.getApplications, (req: Request, res: Response) => {
+router.get('/', applicationController.getApplications, (req: Request, res: Response) => {
   console.log('got applications!');
   res.status(200).json(res.locals.applications);
 });
