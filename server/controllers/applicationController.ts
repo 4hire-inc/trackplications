@@ -121,8 +121,6 @@ const applicationController: ApplicationController = {
   updateApplication: async (req: any, res, next) => {
     const userId = req.user?.id;
     const appId = req.body.app_id;
-    console.log('appId: ', appId);
-    console.log('userId: ', userId);
     const updateAppOptions = ['company', 'location', 'position', 'notes'];
     const updateAppFields: string[] = [];
     const updateAppValues: string[] = [];
