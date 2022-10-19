@@ -15,7 +15,7 @@ function EditAppDisplay (props: (EditAppProps)) {
   attributes.forEach(
     ([name, value], i:number) => {
       listAttributes.push(
-        <li key={i} className="editFormInputContainer">
+        <form key={i} className="editFormInputContainer">
           <label htmlFor={name}>{name}:</label>
           <input 
             key={i} 
@@ -24,7 +24,7 @@ function EditAppDisplay (props: (EditAppProps)) {
             defaultValue={value} 
             onChange={(e) => localActiveApp[name] = e.target.value}
           />
-        </li>
+        </form>
       );
     }
   );

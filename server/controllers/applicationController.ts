@@ -9,14 +9,12 @@ const applicationController: ApplicationController = {
     try {
       const id = req.user?.id;
       const queryString = `
-      SELECT a.id, a.company, a.location, a.position, a.notes, u.userID, a.modified_at, o.salary, o.sign_on_bonus, o.start_date, o.notes as offer_notes, o.id as offer_id,  o.created_at as offer_created_at, o.modified_at as offer_modified_at,s.status_name, s.status_rank, s.created_at AS status_created_at, s.modified_at AS status_modified_at, s.id AS status_id
+      SELECT a.id, a.company, a.location, a.position, a.notes, u.userID, a.modified_at, s.status_name, s.status_rank, s.created_at AS status_created_at, s.modified_at AS status_modified_at, s.id AS status_id
           FROM applications AS a
           INNER JOIN users AS u
           ON a.user_id = u.userid
-          INNER JOIN offers AS o
-          ON a.id = o.app_id
           INNER JOIN status AS s
-          ON a.id = o.app_id
+          ON a.id = s.app_id
           WHERE u.userID = ($1)
       `;
       const params = [id];

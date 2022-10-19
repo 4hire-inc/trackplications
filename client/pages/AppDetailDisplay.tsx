@@ -29,7 +29,7 @@ function AppDetailDisplay (props: (ActiveAppProps)) {
           className="back-button" 
           onClick={() => navigate('/summary')}
         >
-          &#128281;
+          &#171;
         </button>
         <h2>{appTitle}</h2>
         <button 

@@ -21,7 +21,7 @@ function AddAppDisplay (props: AppsListProps) {
   fields.forEach(
     (name, i:number) => {
       listAttributes.push(
-        <li key={i} className="editFormInputContainer">
+        <form key={i} className="editFormInputContainer">
           <label htmlFor={name}>{name}:</label>
           <input 
             key={i} 
@@ -30,7 +30,7 @@ function AddAppDisplay (props: AppsListProps) {
             defaultValue=''
             onChange={(e) => newApp[name] = e.target.value}
           />
-        </li>
+        </form>
       );
     }
   );
