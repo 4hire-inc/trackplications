@@ -1,7 +1,5 @@
 import applicationModel from '../models/applicationModel';
 import { ApplicationController } from '../serverTypes';
-import { Request, Response, NextFunction, application } from 'express';
-import { isAsyncFunction } from 'util/types';
 
 const applicationController: ApplicationController = {
 // middleware to get all applications
@@ -10,7 +8,7 @@ const applicationController: ApplicationController = {
       const id = req.user?.id;
       console.log('id', id);
       const queryString = `
-      SELECT a.id, a.company, a.location, a.position, a.notes, u.userID, a.modified_at, s.status_name, s.status_rank, s.created_at AS status_created_at, s.modified_at AS status_modified_at, s.id AS status_id
+      SELECT a.id AS app_id, a.company, a.location, a.position, a.notes, u.userID, a.modified_at, s.status_name, s.status_rank, s.created_at AS status_created_at, s.modified_at AS status_modified_at, s.id AS status_id
           FROM applications AS a
           INNER JOIN users AS u
           ON a.user_id = u.userid
@@ -123,8 +121,7 @@ const applicationController: ApplicationController = {
   // update application and status information for interviewing stage
   updateApplication: async (req: any, res, next) => {
     const userId = req.user?.id;
-    const appId = req.body.appId;
-
+    const appId = req.body.app_id;
     const updateAppOptions = ['company', 'location', 'position', 'notes'];
     const updateAppFields: string[] = [];
     const updateAppValues: string[] = [];
@@ -147,7 +144,6 @@ const applicationController: ApplicationController = {
     });
     if (!updateStatusFields.length) return next();
 
-
     let updateAppInfoQuery = 'UPDATE applications SET ';
     for (let i = 0; i < updateAppFields.length; i++) {
       if (i !== updateAppFields.length - 1) updateAppInfoQuery += `${updateAppFields[i]} = '${updateAppValues[i]}', `;
@@ -157,8 +153,8 @@ const applicationController: ApplicationController = {
     }
 
     let updateStatusInfoQuery = 'UPDATE status SET ';
-    for (let i = 0; i < updateAppFields.length; i++) {
-      if (i !== updateAppFields.length - 1) updateStatusInfoQuery += `${updateStatusFields[i]} = '${updateStatusValues[i]}', `;
+    for (let i = 0; i < updateStatusFields.length; i++) {
+      if (i !== updateStatusFields.length - 1) updateStatusInfoQuery += `${updateStatusFields[i]} = '${updateStatusValues[i]}', `;
       else {
         updateStatusInfoQuery += `${updateStatusFields[i]} = '${updateStatusValues[i]}' WHERE app_id=($1)`;
       }
@@ -188,6 +184,7 @@ const applicationController: ApplicationController = {
                 status: 500,
               });
               else {
+                console.log('response: ', app?.rows[0]);
                 res.locals.appInfo = app?.rows[0];
                 return next();
               }
