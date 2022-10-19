@@ -14,7 +14,6 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
 
   const fetchApplications = () => {
     axios.get('/api/app').then((res) => {
-      console.log('res data', res.data);
       props.updateAppsList(res.data);
     });
   };
