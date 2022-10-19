@@ -1,8 +1,10 @@
 .appAttributeWrapper {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 5fr;
   align-items: baseline;
   gap: 1rem;
-  h4, p {
+  h4, div {
     margin-block-start: 0;
     margin-block-end: 0;
   }
