@@ -1,7 +1,8 @@
 .add-app-button,
 .back-button,
 .edit-button,
-.done-button {
+.done-button,
+.delete-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +18,8 @@
 .add-app-button:hover,
 .back-button:hover,
 .edit-button:hover,
-.done-button:hover {
+.done-button:hover,
+.delete-button:hover {
   background-color: $background-color;
   color: $primary;
   cursor: pointer;
@@ -25,6 +27,16 @@
 .add-app-button:active,
 .back-button:active,
 .edit-button:active,
-.done-button:active {
+.done-button:active,
+.delete-button:active {
   box-shadow: inset 1px 1px 1px 0px $shadow;
+}
+
+.delete-button {
+  color: $shadow;
+  padding: 0;
+  justify-self: center;
+}
+.delete-button:hover {
+  color: $highlight
 }
