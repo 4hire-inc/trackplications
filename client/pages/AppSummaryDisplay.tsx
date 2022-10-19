@@ -49,16 +49,19 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
 
   return (
     <React.Fragment>
-      <button
-        type='button'
-        className='add-app-button'
-        onClick={() => {
-          navigate('/addapp');
-        }}
-      >
-        {'+ New Application'}
-      </button>
-      <div className="app-summary-heading"><h2>Your Applications</h2></div>
+      
+      <div className="app-summary-heading">
+        <h2>Your Applications</h2>
+        <button
+          type='button'
+          className='add-app-button'
+          onClick={() => {
+            navigate('/addapp');
+          }}
+        >
+          {'+'}
+        </button>
+      </div>
       <div className='table-container'>
 
         <div className='heading-row'>
@@ -67,9 +70,8 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
           <span className='table-heading'>Location</span>
           <span className='table-heading'>Status</span>
         </div>
-        <div>
-          {appsArray.length < 1 ? <div className="center">{'You don\'t have any applications.'}</div> : appsArray}
-        </div>
+        {appsArray.length < 1 ? <div className="content-row">{'You don\'t have any applications.'}</div> : appsArray}
+
       </div>
     </React.Fragment>
     
