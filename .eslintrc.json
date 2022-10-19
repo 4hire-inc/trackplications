@@ -18,7 +18,8 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "testing-library"
     ],
     "rules": {
         "indent": [
@@ -43,5 +44,6 @@
         ],
         "react/prop-types": "off",
         "prefer-const": "warn"
-    }
+    },
+    
 }
