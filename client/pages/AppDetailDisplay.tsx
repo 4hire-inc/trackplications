@@ -36,7 +36,7 @@ function AppDetailDisplay (props: (ActiveAppProps)) {
           className="edit-button" 
           onClick={() => navigate('/editapp')}
         >
-          &#128393;
+          &#9998;
         </button>
       </div>
       <ul className='appDetailAttributesContainer'>
