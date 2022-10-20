@@ -1,0 +1,45 @@
+// styling for "./components/HeaderDisplay.tsx"
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+  width: 100%;
+  background-color: $background-color;
+  color: $text-primary;
+  border-bottom: 1px solid $shadow;
+  box-shadow: $shadow 0px 0px 1px 1px;
+  // overflow: hidden;
+}
+.navleft {
+  margin-left: 2rem;
+}
+.navright {
+  display: flex;
+  gap: 1rem;
+  margin-right: 2rem;
+  align-items: center;
+}
+.center {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+a:link {
+  text-decoration: none;
+}
+.logout-button {
+  font-size: 0.9rem;
+  background-color: transparent;
+  color: $text-secondary;
+  border: none;
+  border-radius: 0.2rem;
+  margin-left: 1rem;
+}
+.logout-button:hover,
+.logout-button:active {
+  color: $highlight;
+}

@@ -1,0 +1,69 @@
+// styling for "./pages/AppDetailDisplay.tsx"
+.editAppContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+  form {
+    padding: 0;
+  }
+}
+.editAppButtonContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  background-color: $primary;
+  h2 {
+    color: $background-color;
+  }
+}
+.editAppAttributesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 0.5rem 1rem;
+}
+.editFormInputContainer {
+  // display: grid;
+  // grid-auto-flow: column;
+  // grid-template-columns: 1fr 5fr;
+  // align-items: baseline;
+  gap: 1rem;
+  
+  label {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  textarea{
+    height: 100;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  select {
+    margin-left: 5px;
+    padding: 2px;
+    border-radius: 4px;
+  }
+}
+
+#error-message {
+  color: red;
+  list-style-type: none;
+}
+
+.req {
+  color: red;
+}

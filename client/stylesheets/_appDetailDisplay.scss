@@ -1,0 +1,23 @@
+// styling for "./pages/AppDetailDisplay.tsx"
+.appDetailContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+.appDetailButtonContainer {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  justify-content: space-between;
+  background-color: $primary;
+  h2 {
+    color: $background-color;
+  }
+}
+.appDetailAttributesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 0.5rem 1rem;
+}
