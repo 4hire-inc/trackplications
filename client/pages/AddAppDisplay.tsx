@@ -30,9 +30,10 @@ function AddAppDisplay (props: AppsListProps) {
     4: 'Interviews Done',
     5: 'Interviewing',
     6: 'Application Sent',
-    7: 'Offer Declined',
-    8: 'Rejected',
-    9: 'No Response'
+    7: 'Drafting',
+    8: 'Offer Declined',
+    9: 'Rejected',
+    10: 'No Response'
   };
   fields.forEach(
     (name, i:number) => {
@@ -93,9 +94,10 @@ function AddAppDisplay (props: AppsListProps) {
               <option value="4">Interviews Done</option>
               <option value="5">Interviewing</option>
               <option value="6">Application Sent</option>
-              <option value="7">Offer Declined</option>
-              <option value="8">Rejected</option>
-              <option value="9">No Response</option>
+              <option value="7">Drafting</option>
+              <option value="8">Offer Declined</option>
+              <option value="9">Rejected</option>
+              <option value="10">No Response</option>
             </select></form>
             <li id="error-message"></li>
         </ul>
