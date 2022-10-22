@@ -16,6 +16,7 @@ function EditAppDisplay (props: (EditAppProps)) {
     'company',
     'location',
     'position',
+    'application_url',
     'notes',
   ];
   const statuses: {[key: string] : string} = {

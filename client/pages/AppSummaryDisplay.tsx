@@ -35,6 +35,7 @@ const AppSummaryDisplay = (props: (AppsSummaryType) ) => {
       company: '',
       location: '',
       position: '',
+      application_url: '',
       notes: '',
       status_id: '',
       offer_id: '',
