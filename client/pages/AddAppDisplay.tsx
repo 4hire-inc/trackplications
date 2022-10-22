@@ -11,6 +11,7 @@ function AddAppDisplay (props: AppsListProps) {
     company: '',
     location: '',
     position: '',
+    application_url: '',
     notes: '',
     status_name: '',
     status_rank: ''
@@ -21,6 +22,7 @@ function AddAppDisplay (props: AppsListProps) {
     'company',
     'location',
     'position',
+    'application_url',
     'notes',
   ];
   const statuses: {[key: string] : string} = {
@@ -55,7 +57,7 @@ function AddAppDisplay (props: AppsListProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errorMessage = document.querySelector('#error-message');
-    if (!newApp.company || !newApp.location || !newApp.position || !newApp.status_rank) {
+    if (!newApp.company || !newApp.location || !newApp.position || !newApp.application_url || !newApp.status_rank) {
       if (errorMessage) errorMessage.innerHTML = 'Error: Please fill out all required fields.';
     } else {
       if (errorMessage) errorMessage.innerHTML = '';
